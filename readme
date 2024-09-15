@@ -1,0 +1,12 @@
+Rirekisho is a resume-builder. It is not necessarily meant to be extremely
+customizable, but rather a more procedurally-created resume tool.
+
+The motivation behind this is mostly to be able to capture *all* the information
+that a person wants in any number of resumes in a common manner and then be able
+to easily create multiple tailored resumes without having to re-write a lot of
+the same information or boilerplate.
+
+(The name "rirekisho" comes from the Japanese word for resume: 履歴書. There is
+no particular reason for choosing this name besides the fact that I wanted
+something more interesting that "resume" or similar as a package name and that
+I'm currently learning Japanese.)
