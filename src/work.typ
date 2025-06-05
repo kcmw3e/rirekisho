@@ -19,7 +19,7 @@
 // ```
 // -------------------------------------------------------------------------- //
 
-// Define a work experience. 
+// Define a work experience.
 //
 // # Parameters
 // - `company`: `str` | `content` | `none`
@@ -103,7 +103,7 @@
     company = emph(company)
   }
 
-  // Format `datetime` fields ahead of time so they can be treated like other 
+  // Format `datetime` fields ahead of time so they can be treated like other
   // content down the line.
   if type(start) == datetime {
     start = start.display(date-format)
@@ -192,6 +192,6 @@
       show-work-experience(experience, date-format: date-format)
     ),
   )
-  
+
   return result-content
 }
