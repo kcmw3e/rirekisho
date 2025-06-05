@@ -8,9 +8,7 @@ description = "A library to help with procedural resume-building."
 repository = "https://github.com/kcmw3e/rirekisho"
 keywords = ["cv", "resume"]
 categories = ["cv"]
-exclude = [
-	"tests",
-]
+exclude = ["tests"]
 
 [template]
 path = "template/"
