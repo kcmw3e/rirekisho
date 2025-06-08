@@ -19,6 +19,8 @@
 // ```
 // -------------------------------------------------------------------------- //
 
+#import "timeframe.typ": show-timeframe
+
 // Define a work experience.
 //
 // # Parameters
@@ -74,10 +76,8 @@
 //     The experience to show; it should be a dictionary formatted like the one
 //     returned from `Work-experience`.
 // - `date-format`: `str` | `none`
-//     The format string passed to `datetime.display`. If `none`, the format is
-//     simply the name of the month followed by the year. This only takes effect
-//     when a work experience `start` or `end` field is a `datetime` and gets
-//     ignored otherwise.
+//     The format string passed to `datetime.display`. See `show-timeframe` for
+//     details.
 //
 // # Notes
 // - Any field in the work experience that is of type `content` will not be
@@ -86,10 +86,6 @@
 //   Other fields  of type `str` will be formatted as `text` (which may be
 //   modified via `set`/`show` rules.
 #let show-work-experience(experience, date-format: none) = {
-  if date-format == none {
-    date-format = "[month repr:short] [year]"
-  }
-
   let result-content = none
 
   let (company, location, position, start, end, body) = experience
@@ -101,15 +97,6 @@
   }
   if type(company) == str {
     company = emph(company)
-  }
-
-  // Format `datetime` fields ahead of time so they can be treated like other
-  // content down the line.
-  if type(start) == datetime {
-    start = start.display(date-format)
-  }
-  if type(end) == datetime {
-    end = end.display(date-format)
   }
 
   result-content += position
@@ -124,14 +111,13 @@
   }
   result-content += location
 
-  let dates = none
-  dates += start
-  if start != none or end != none {
-    dates += [--]
-  }
-  dates += end
+  let timeframe = show-timeframe(
+    start: start,
+    end: end,
+    date-format: date-format,
+  )
 
-  result-content += [#h(1fr)] + dates
+  result-content += [#h(1fr) #timeframe]
   result-content += body
 
   return result-content
