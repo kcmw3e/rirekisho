@@ -1,0 +1,14 @@
+[type.typ]
+extend-glob = ["*.typ"]
+extend-ignore-re = [
+  # This is to allow Typst file names.
+  '.*\.typ',
+]
+
+[default]
+extend-ignore-re = [
+  # This stops false-positives when importing "<some-file>.typ" in Typst. It
+  # should also be good for any "<filename>.typ" kind of pattern as long as it
+  # is quoted.
+  '"\w*\.typ"',
+]
