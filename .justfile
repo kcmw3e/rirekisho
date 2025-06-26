@@ -15,7 +15,6 @@ alias c := clean
 # The build/test dir variables can be set to change the build directory, and the
 # PDF viewer variable to change what program is used for opening PDFs.
 
-src_dir := 'src'
 build_dir := env('RIREKISHO_BUILD_DIR', 'build')
 test_dir := build_dir/env('RIREKISHO_TEST_DIR', 'test')
 pdf_viewer := env('PDF_VIEWER', 'okular')
