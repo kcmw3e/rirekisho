@@ -11,13 +11,14 @@ alias b := build
 alias t := test
 alias c := clean
 
-# TODO: Make note in documentation that these env vars can be set to change
-# build directory, and note that they will be created if they don't already
-# exist.
+# TODO: Make note in documentation about these environment variables.
+# The build/test dir variables can be set to change the build directory, and the
+# PDF viewer variable to change what program is used for opening PDFs.
 
 src_dir := 'src'
 build_dir := env('RIREKISHO_BUILD_DIR', 'build')
 test_dir := build_dir/env('RIREKISHO_TEST_DIR', 'test')
+pdf_viewer := env('PDF_VIEWER', 'okular')
 
 build: make-build-dir
     # Basically, just copy over the lib into a versioned directory
@@ -34,6 +35,12 @@ test: make-test-dir
 
 clean:
     rm -r {{build_dir}}
+
+open-tests:
+    #!/usr/bin/env fish
+
+    set files (find '{{test_dir}}' -type f -name '*.pdf')
+    '{{pdf_viewer}}' $files &>/dev/null &
 
 [private]
 make-build-dir:
