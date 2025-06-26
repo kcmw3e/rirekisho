@@ -1,7 +1,7 @@
 [package]
 name = "rirekisho"
 version = "0.0.0"
-entrypoint = "src/rirekisho.typ"
+entrypoint = "src/lib.typ"
 authors = ["Casey Walker"]
 license = "MIT"
 description = "A library to help with procedural resume-building."
