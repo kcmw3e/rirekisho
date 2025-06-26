@@ -20,7 +20,23 @@ test_dir := build_dir/env('RIREKISHO_TEST_DIR', 'test')
 pdf_viewer := env('PDF_VIEWER', 'okular')
 
 build: make-build-dir
-    # Basically, just copy over the lib into a versioned directory
+    #!/usr/bin/env fish
+
+    set build_version (cat version)
+
+    set version_dir (string join '/' '{{build_dir}}' $build_version)
+    mkdir -p $version_dir
+
+    # TODO: find a better way of defining the manifest
+    set -a manifest 'readme'
+    set -a manifest 'license'
+    set -a manifest 'typst.toml'
+    set -a manifest 'src/'
+    set -a manifest 'docs/'
+    set -a manifest 'template'
+    set -a manifest 'changelog'
+
+    cp -rt $version_dir $manifest
 
 test: make-test-dir
     #!/usr/bin/env fish
