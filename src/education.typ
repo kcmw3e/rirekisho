@@ -18,7 +18,7 @@
 //
 // #show-education-section(education)
 // ```
-// -------------------------------------------------------------------------- //
+// -----------------------------------------------------------------------------
 
 // Define a course of study, such as a degree earned at a university or a
 // certification, etc.
