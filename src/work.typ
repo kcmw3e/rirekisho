@@ -83,7 +83,7 @@
 // - Any field in the work experience that is of type `content` will not be
 //   modified.
 // - The `position` and `company` fields will be italicized if of type `str`.
-//   Other fields  of type `str` will be formatted as `text` (which may be
+//   Other fields of type `str` will be formatted as `text` (which may be
 //   modified via `set`/`show` rules.
 #let show-work-experience(experience, date-format: none) = {
   let result-content = none
