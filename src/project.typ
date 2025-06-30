@@ -107,7 +107,7 @@
   result-content += timeframe
 
   if body != none {
-    result-content += parbreak()
+    result-content += linebreak()
   }
 
   result-content += body
