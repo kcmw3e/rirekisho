@@ -190,7 +190,7 @@
   date-format: none,
   should-group-institutions: false,
 ) = {
-  let result-content = []
+  let result-content = none
 
   let (title, unnamed-experiences, named-experiences) = education
 

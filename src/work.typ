@@ -161,7 +161,7 @@
 // - See notes on `show-work-experience` for how parts of work experiences are
 //   formatted depending on types, etc.
 #let show-work-section(work, list-marker: none, date-format: none) = {
-  let result-content = []
+  let result-content = none
 
   let (title, unnamed-experiences, named-experiences) = work
 
