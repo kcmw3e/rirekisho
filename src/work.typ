@@ -75,7 +75,7 @@
 // - `experience`: `dictionary`
 //     The experience to show; it should be a dictionary formatted like the one
 //     returned from `Work-experience`.
-// - `date-format`: `str` | `none`
+// - `datetime-format`: `str` | `none`
 //     The format string passed to `datetime.display`. See `show-timeframe` for
 //     details.
 //
@@ -85,7 +85,7 @@
 // - The `position` and `company` fields will be italicized if of type `str`.
 //   Other fields of type `str` will be formatted as `text` (which may be
 //   modified via `set`/`show` rules.
-#let show-work-experience(experience, date-format: none) = {
+#let show-work-experience(experience, datetime-format: none) = {
   let result-content = none
 
   let (company, location, position, start, end, body) = experience
@@ -114,7 +114,7 @@
   let timeframe = show-timeframe(
     start: start,
     end: end,
-    date-format: date-format,
+    date-format: datetime-format,
   )
 
   result-content += [#h(1fr) #timeframe]
@@ -151,7 +151,7 @@
 // - `list-marker`: `str` | `content` | `none`
 //     The marker to use for the work experience list. This is directly passed
 //     to `list`.
-// - `date-format`: `str` | `none`
+// - `datetime-format`: `str` | `none`
 //     The date format to use for displaying work experiences. See
 //     `show-work-experience` for details.
 //
@@ -160,7 +160,7 @@
 //    emboldened; otherwise it is left as-is.
 // - See notes on `show-work-experience` for how parts of work experiences are
 //   formatted depending on types, etc.
-#let show-work-section(work, list-marker: none, date-format: none) = {
+#let show-work-section(work, list-marker: none, datetime-format: none) = {
   let result-content = none
 
   let (title, unnamed-experiences, named-experiences) = work
@@ -175,7 +175,7 @@
   result-content += list(
     marker: list-marker,
     ..experiences.map(experience =>
-      show-work-experience(experience, date-format: date-format)
+      show-work-experience(experience, datetime-format: datetime-format)
     ),
   )
 

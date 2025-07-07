@@ -66,7 +66,7 @@
 // - `project`: `dictionary`
 //     The project to show; it should be a dictionary formatted like the one
 //     returned from `Project`.
-// - `date-format`: `str` | `none`
+// - `datetime-format`: `str` | `none`
 //     The format string passed to `datetime.display`. If `none`, the format is
 //     simply the name of the month followed by the year. This only takes effect
 //     when a project `start` or `end` field is a `datetime` and gets ignored
@@ -77,7 +77,7 @@
 // - The `title` field will be italicized if of type `str`. Other fields  of
 //   type `str` will be formatted as `text` (which may be modified via
 //   `set`/`show` rules.
-#let show-project(project, date-format: none) = {
+#let show-project(project, datetime-format: none) = {
   let result-content = none
 
   let (title, location, start, end, body) = project
@@ -97,7 +97,7 @@
   let timeframe = show-timeframe(
     start: start,
     end: end,
-    date-format: date-format,
+    date-format: datetime-format,
   )
 
   if timeframe != none {
@@ -144,7 +144,7 @@
 // - `list-marker`: `str` | `content` | `none`
 //     The marker to use for the project list. This is directly passed to
 //     `list`.
-// - `date-format`: `str` | `none`
+// - `datetime-format`: `str` | `none`
 //     The date format to use for displaying projects. See `show-project` for
 //     details.
 //
@@ -153,7 +153,11 @@
 //    emboldened; otherwise it is left as-is.
 // - See notes on `show-project` for how parts of projects are formatted
 //   depending on types, etc.
-#let show-project-section(projects, list-marker: none, date-format: none) = {
+#let show-project-section(
+  projects,
+  list-marker: none,
+  datetime-format: none,
+) = {
   let result-content = none
 
   let (title, unnamed-projects, named-projects) = projects
@@ -168,7 +172,7 @@
   result-content += list(
     marker: list-marker,
     ..projects.map(project =>
-      show-project(project, date-format: date-format)
+      show-project(project, datetime-format: datetime-format)
     ),
   )
 
