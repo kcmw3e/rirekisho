@@ -7,8 +7,10 @@
 //   company:  "Lemonade Stand LLC",
 //   location: "Sidewalk of 5th St.",
 //   position: "Owner",
-//   start:    datetime(year: 2042, month: 01, day: 01),
-//   end:      datetime(year: 2042, month: 01, day: 02),
+//   timeframe: (
+//     start:    datetime(year: 2042, month: 01, day: 01),
+//     end:      datetime(year: 2042, month: 01, day: 02),
+//   ),
 // )[
 // - I ran a lemonade stand in my front yard for people in my neighborhood.
 // ]
@@ -32,11 +34,9 @@
 //     etc., or a full address, or any description of the location.
 // - `position`: `str` | `content` | `none`
 //     The title of the position.
-// - `start`: `str` | `content` | `datetime` | `none`
-//     The start date of the work experience.
-// - `end`: `str` | `content` | `datetime` | `none`
-//     The end date of the work experience. Often, if this is a current position
-//     simply `"Present"` will be satisfactory.
+// - `timeframe`: `str` | `content` | `dictionary` | `array` | `none`
+//     The timeframe in which the experience was completed. It may be any valid
+//     data type that can be passed to `show-timeframe`.
 // - `body`: `content`
 //     The content to provide when showing the experience in the resume. This
 //     can simply be a bulleted list of information describing what work was
@@ -46,16 +46,14 @@
   company: none,
   location: none,
   position: none,
-  start: none,
-  end: none,
+  timeframe: none,
   body,
   ) = {
   return (
     company: company,
     location: location,
     position: position,
-    start: start,
-    end: end,
+    timeframe: timeframe,
     body: body,
   )
 }
@@ -88,7 +86,7 @@
 #let show-work-experience(experience, datetime-format: none) = {
   let result-content = none
 
-  let (company, location, position, start, end, body) = experience
+  let (company, location, position, timeframe, body) = experience
 
   // Auto-format position and company fields as italic if they are strings, but
   // leave content alone.
@@ -111,13 +109,12 @@
   }
   result-content += location
 
-  let timeframe = show-timeframe(
-    start: start,
-    end: end,
-    date-format: datetime-format,
+  let timeframe-content = show-timeframe(
+    timeframe: timeframe,
+    format: datetime-format,
   )
 
-  result-content += [#h(1fr) #timeframe]
+  result-content += [#h(1fr) #timeframe-content]
   result-content += body
 
   return result-content

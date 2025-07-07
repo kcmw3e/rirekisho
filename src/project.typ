@@ -4,10 +4,12 @@
 // Here is a usage example:
 // ```typst
 // #let hello-world = Project(
-//   title:  "Hello World",
+//   title: "Hello World",
 //   location: "Earth",
-//   start:    datetime(year: 2042, month: 01, day: 01),
-//   end:      datetime(year: 2042, month: 01, day: 02),
+//   timeframe: (
+//     start: datetime(year: 2042, month: 01, day: 01),
+//     end:   datetime(year: 2042, month: 01, day: 02),
+//   ),
 // )[
 // - I wrote "Hello, World!" in `typst` and produced a PDF file greeting the
 //     whole world.
@@ -32,11 +34,9 @@
 //     of the location. If the project wasn't completed as part of an
 //     organization and was personal, this field can be instead listed as
 //     `"Personal"` or just left empty.
-// - `start`: `str` | `content` | `datetime` | `none`
-//     The start date of the project.
-// - `end`: `str` | `content` | `datetime` | `none`
-//     The end date of the project. If this is an ongoing project, putting
-//     simply `"Present"` should be satisfactory.
+// - `timeframe`: `str` | `content` | `dictionary` | `array` | `none`
+//     The timeframe in which the project was completed. It may be any valid
+//     data type that can be passed to `show-timeframe`.
 // - `body`: `content`
 //     The content to provide when showing the project in the resume. This is
 //     typically a bulleted list of information about the project, but it may
@@ -46,8 +46,8 @@
 // - If the project was completed during a standard period of time (e.g. a
 //   given semester of school), `end` can be left as `none` while passing
 //   `start` as `content` or `str` (for example, `"Spring 2042"`).
-#let Project(title: none, location: none, start: none, end: none,  body) = {
-  return (title: title, location: location, start: start, end: end, body: body)
+#let Project(title: none, location: none, timeframe: none,  body) = {
+  return (title: title, location: location, timeframe: timeframe, body: body)
 }
 
 
@@ -80,7 +80,7 @@
 #let show-project(project, datetime-format: none) = {
   let result-content = none
 
-  let (title, location, start, end, body) = project
+  let (title, location, timeframe, body) = project
 
   if type(title) == str {
     title = emph(title)
@@ -94,17 +94,16 @@
 
   result-content += location
 
-  let timeframe = show-timeframe(
-    start: start,
-    end: end,
-    date-format: datetime-format,
+  let timeframe-content = show-timeframe(
+    timeframe: timeframe,
+    format: datetime-format,
   )
 
-  if timeframe != none {
+  if timeframe-content != none {
     result-content += h(1fr)
   }
 
-  result-content += timeframe
+  result-content += timeframe-content
 
   if body != none {
     result-content += linebreak()
