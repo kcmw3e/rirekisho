@@ -4,7 +4,7 @@
 //
 // Here is a usage example:
 // ```typst
-// #let free-degree = Education-experience(
+// #let free-degree = Education(
 //   institution: "Anonymous University",
 //   location: "Nowhere",
 //   kind: "PhD",
@@ -43,7 +43,7 @@
 // - `scale`: `str` | `content` | `float` | `none`
 //     The scale with which to put the `score` in perspective. Often, for GPAs,
 //     this is `4.0`.
-#let Education-experience(
+#let Education(
   institution: none,
   location: none,
   kind: none,
@@ -63,9 +63,9 @@
   )
 }
 
-// Turn an education experience into content.
+// Turn an education into content.
 //
-// The education experience will be formatted as follows:
+// The education will be formatted as follows:
 //   [`institution`]{ --- }[`location`]
 //   [`kind`] [`study`]{ --- }[`score`]{/}[`scale`] ... [`date`]
 // Where anything in "{}" will be inserted depending on whether both of the
@@ -73,9 +73,9 @@
 // left-aligned, and everything right of it will be right-aligned.
 //
 // # Parameters
-// - `experience`: `dictionary`
-//     The experience to show, which should formatted like the one returned from
-//     `Education-experience`.
+// - `education`: `dictionary`
+//     The education to show, which should formatted like the one returned from
+//     `Education`.
 // - `date-format`: `str` | `none`
 //     The format string passed to `datetime.display`. If `none`, the format is
 //     simply the name of the month followed by the year.
@@ -83,19 +83,18 @@
 // # Notes
 // - If no score is provided, the scale will not be displayed even if it is
 //   provided.
-// - Any field in the education experience that is of type `content` will not be
-//   modified.
+// - Any field in the education that is of type `content` will not be modified.
 // - The `institution` field will be italicized if of type `str`. Other fields
 //   of type `str` will be formatted as `text` (which may be modified via
 //   `set`/`show` rules.
-#let show-education-experience(experience, date-format: none) = {
+#let show-education(education, date-format: none) = {
   if date-format == none {
     date-format = "[month repr:short] [year]"
   }
 
   let result-content = none
 
-  let (institution, location, kind, study, date, score, scale) = experience
+  let (institution, location, kind, study, date, score, scale) = education
 
   if type(institution) == str {
     institution = emph(institution)
@@ -136,23 +135,22 @@
   return result-content
 }
 
-// A convenience function to gather a list of educational experiences together
-// that can be displayed as a section in the resume.
+// A convenience function to gather a list of educations together that can be
+// displayed as a section in the resume.
 //
 // # Parameters
 // - `title`: `str` | `content` | `none`
 //     The title to display for the education section.
-// - `experiences`: `arguments`
-//     Experiences should be dictionaries formatted like the ones returned from
-//     `Education-experience` such that it can be used in
-//     `show-education-experience`. Arguments may be named or not; in either
-//     case they are appended in the order in which they were passed, with the
-//     named experiences first.
-#let Education-section(title: "Education", ..experiences) = {
+// - `educations`: `arguments`
+//     Educations should be dictionaries formatted like the ones returned from
+//     `Education` such that it can be used in `show-education`. Arguments may
+//     be named or not; in either case they are appended in the order in which
+//     they were passed, with the named educations first.
+#let Education-section(title: "Education", ..educations) = {
   return (
     title: title,
-    unnamed-experiences: experiences.pos(),
-    named-experiences: experiences.named(),
+    unnamed-educations: educations.pos(),
+    named-educations: educations.named(),
   )
 }
 
@@ -163,27 +161,28 @@
 //     The education section to show, which should be a dictionary formatted
 //     like the one returned from `Education-section`.
 // - `list-marker`: `str` | `content` | `none`
-//     The marker to use for the education experience list. This is directly
-//     passed to `list`.
+//     The marker to use for the education list. This is directly passed to
+//     `list`.
 // - `date-format`: `str` | `none`
-//     The date format to use for displaying education experiences. See
-//     `show-education-experience` for details.
+//     The date format to use for displaying educations. See `show-education`
+//     for details.
 // - `should-group-institutions`: `bool`
-//     Whether the experiences should be grouped by institution. The groups will
+//     Whether the educations should be grouped by institution. The groups will
 //     be ordered based on the order in which institutions are found by
-//     searching through the education experiences in the order they would be
-//     displayed ordinarily. This means that, for example, if experience 'A' and
-//     'C' both share institution 'I1', and experience 'B' with institution 'I2'
-//     was ordered between the two, the resulting group will be 'A' and 'C'
-//     under 'I1' followed by 'B' under 'I2'.
+//     searching through the educations in the order they would be displayed
+//     ordinarily. This means that, for example, if education 'A' and 'C' both
+//     share institution 'I1', and education 'B' with institution 'I2' was
+//     ordered between the two, the resulting group will be 'A' and 'C' under
+//     'I1' followed by 'B' under 'I2'.
 //
 // # Notes
 // -  If the education section's title is passed as type `str`, the title will
 //    be emboldened; otherwise it is left as-is.
-// - See notes on `show-education-experience` for how parts of education
-//   experiences are formatted depending on types, etc.
-// - If the experiences are to be grouped by institution, any experience that
-//   does not have an institution (e.g. it is `none`) will be ignored.
+// - See notes on `show-education` for how parts of educations are formatted
+//   depending on types, etc.
+// TODO: check if the below comment is actually true
+// - If the educations are to be grouped by institution, any education that does
+//   not have an institution (e.g. it is `none`) will be ignored.
 #let show-education-section(
   education,
   list-marker: "",
@@ -192,74 +191,74 @@
 ) = {
   let result-content = none
 
-  let (title, unnamed-experiences, named-experiences) = education
+  let (title, unnamed-educations, named-educations) = education
 
   if type(title) == str {
     title = strong(title)
   }
   result-content += title
 
-  let experiences = named-experiences.values() + unnamed-experiences
+  let educations = named-educations.values() + unnamed-educations
 
   if should-group-institutions {
     // TODO: clean up this branch; `institutions-map` should likely be a
     // dictionary, and can probably be created in a simpler way with the array
     // method `fold`
 
-    // Collect a list of institutions to a corresponding list of experiences
+    // Collect a list of institutions to a corresponding list of educations
     // (e.g. an array of 2-element arrays which consist of
     //   1. an institution
-    //   2. an array of its corresponding experiences
+    //   2. an array of its corresponding educations
     let institutions-map = ()
 
-    for experience in experiences {
-      let institution = experience.institution
+    for education in educations {
+      let institution = education.institution
 
       let position = institutions-map.position(
-        group => group.first() == experience.institution
+        group => group.first() == education.institution
       )
 
       if position != none {
         let (
           group-institution,
-          group-experiences,
+          group-educations,
         ) = institutions-map.at(position)
 
-        group-experiences.push(experience)
+        group-educations.push(education)
 
-        institutions-map.at(position) = (group-institution, group-experiences)
+        institutions-map.at(position) = (group-institution, group-educations)
       } else {
-        institutions-map.push((institution, (experience,)))
+        institutions-map.push((institution, (education,)))
       }
     }
 
-    for (institution, experiences) in institutions-map {
+    for (institution, educations) in institutions-map {
       result-content += list(
         marker: list-marker,
-        ..experiences.enumerate().map(index-and-experience => {
-          let (index, experience) = index-and-experience
+        ..educations.enumerate().map(index-and-education => {
+          let (index, education) = index-and-education
           // TODO: make this not modify the input object (e.g. probably copy
-          // `experience` and then update `.institution` and `.location` instead
-          // of directly modify `experience`), since this could have unexpected
+          // `education` and then update `.institution` and `.location` instead
+          // of directly modify `education`), since this could have unexpected
           // effects to callers if they expect the input to be unmodified
           if (index > 0) {
             // Setting the `institution` and `location` fields to `none` causes
-            // the first line in the output from `show-education-experience` to
-            // be ignored, which essentially acts as a grouping mechanism for
-            // experiences since subsequent experiences show as list items below
-            // the same institution heading.
-            experience.institution = none
-            experience.location = none
+            // the first line in the output from `show-education` to be ignored,
+            // which essentially acts as a grouping mechanism for educations
+            // since subsequent educations show as list items below the same
+            // institution heading.
+            education.institution = none
+            education.location = none
           }
-          return show-education-experience(experience, date-format: date-format)
+          return show-education(education, date-format: date-format)
         })
       )
     }
   } else {
-    for experience in experiences {
+    for education in educations {
       result-content += list(
         marker: list-marker,
-        show-education-experience(experience, date-format: date-format),
+        show-education(education, date-format: date-format),
       )
     }
   }
