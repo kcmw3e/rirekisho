@@ -22,7 +22,7 @@
   "[month repr:short] [year]",
 )
 
-// Return content of the provided datetime in the provided foramt. If `format`
+// Return content of the provided datetime in the provided format. If `format`
 // is `none`, the default format will be retrieved from the state
 // `default-datetime-format`.
 //
@@ -94,7 +94,7 @@
 //     1. A non-container type, which may be any `str`, `content`, `datetime`,
 //        or `none`. All of `str`, `content`, and `none` will not be modified,
 //        so they will be converted as if `[#timeframe]` was used instead of
-//        this funciton, or `none` in the case of `none`.
+//        this function, or `none` in the case of `none`.
 //        If the timeframe is a `datetime`, it will be converted using the
 //        `display` method of `datetime` objects and the provided format.
 //     2. A container type, which is either a dictionary with `"start"` and
