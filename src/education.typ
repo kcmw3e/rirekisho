@@ -178,11 +178,11 @@
 
   let educations = named-educations.values() + unnamed-educations
 
-  for education in educations {
-    result += list(
-      show-education(education, datetime-format: datetime-format),
+  result += list(
+    ..educations.map(education =>
+      show-education(education, datetime-format: datetime-format)
     )
-  }
+  )
 
   return block(result)
 }
