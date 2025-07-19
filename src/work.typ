@@ -34,7 +34,7 @@
 //     etc., or a full address, or any description of the location.
 // - `position`: `str` | `content` | `none`
 //     The title of the position.
-// - `timeframe`: `str` | `content` | `dictionary` | `array` | `none`
+// - `timeframe`: `datetime` | `dictionary` | `array` | `any`
 //     The timeframe in which the experience was completed. It may be any valid
 //     data type that can be passed to `show-timeframe`.
 // - `body`: `content`

@@ -80,8 +80,7 @@
 // Convert a timeframe between two dates into content.
 //
 // # Parameters
-// - `timeframe`:
-//   `str` | `content` | `datetime` | `dictionary` | `array` | `none`
+// - `timeframe`: `datetime` | `dictionary` | `array` | `any`
 //     The timeframe to convert into content. See notes below for more how the
 //     parameter can be formatted and how it's handled.
 // - `format`: `str` | `none`
@@ -91,20 +90,20 @@
 //
 // # Notes
 // - The two forms a timeframe can take:
-//     1. A non-container type, which may be any `str`, `content`, `datetime`,
-//        or `none`. All of `str`, `content`, and `none` will not be modified,
-//        so they will be converted as if `[#timeframe]` was used instead of
-//        this function, or `none` in the case of `none`.
-//        If the timeframe is a `datetime`, it will be converted using the
-//        `display` method of `datetime` objects and the provided format.
+//     1. A non-container type, which may be a `datetime` or any other type that
+//        isn't a container (e.g. an array or dictionary). If the timeframe is a
+//        `datetime`, it will be converted using the `display` method and the
+//        provided format (or the default format). Any other type will be simply
+//        returned as `[#timeframe]`, with the exception that `none` will be
+//        returned as `none`.
 //     2. A container type, which is either a dictionary with `"start"` and
 //        `"end"` keys, or an array of two elements where the order of elements
-//        is `("<start>", "<end>")`. The elements must be any valid
-//        non-container type for the `timeframe` parameter as described above,
-//        where each element will be handled as described, with the addition
-//        that an en-dash will be inserted in the middle. The en-dash will
-//        always be inserted *unless* both endpoints are `none`, in which case
-//        just `none` is returned.
+//        is `(<start>, <end>)`. The elements must be any valid non-container
+//        type for the `timeframe` parameter as described above, where each
+//        element will be handled as described, with the addition that an
+//        en-dash will be inserted in the middle. The en-dash will always be
+//        inserted *unless* both endpoints are `none`, in which case just `none`
+//        is returned.
 #let show-timeframe(timeframe: none, format: none) = {
   let result-content = none
 
@@ -114,7 +113,7 @@
   } else if type(timeframe) == datetime {
     result-content += show-datetime(timeframe, format: format)
   } else {
-    result-content += timeframe
+    result-content += [#timeframe]
   }
 
   return result-content

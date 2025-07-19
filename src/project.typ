@@ -34,7 +34,7 @@
 //     of the location. If the project wasn't completed as part of an
 //     organization and was personal, this field can be instead listed as
 //     `"Personal"` or just left empty.
-// - `timeframe`: `str` | `content` | `dictionary` | `array` | `none`
+// - `timeframe`: `datetime` | `dictionary` | `array` | `any`
 //     The timeframe in which the project was completed. It may be any valid
 //     data type that can be passed to `show-timeframe`.
 // - `body`: `content`
