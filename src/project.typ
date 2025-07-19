@@ -78,7 +78,7 @@
 //   type `str` will be formatted as `text` (which may be modified via
 //   `set`/`show` rules.
 #let show-project(project, datetime-format: none) = {
-  let result-content = none
+  let result = none
 
   let (title, location, timeframe, body) = project
 
@@ -86,13 +86,14 @@
     title = emph(title)
   }
 
-  result-content += title
 
-  if result-content != none and location != none {
-    result-content += [ --- ]
+  result += title
+
+  if result != none and location != none {
+    result += [ --- ]
   }
 
-  result-content += location
+  result += location
 
   let timeframe-content = show-timeframe(
     timeframe: timeframe,
@@ -100,18 +101,18 @@
   )
 
   if timeframe-content != none {
-    result-content += h(1fr)
+    result += h(1fr)
   }
 
-  result-content += timeframe-content
+  result += timeframe-content
 
   if body != none {
-    result-content += linebreak()
+    result += linebreak()
   }
 
-  result-content += body
+  result += body
 
-  return block(result-content)
+  return block(result)
 }
 
 
@@ -157,23 +158,23 @@
   list-marker: none,
   datetime-format: none,
 ) = {
-  let result-content = none
+  let result = none
 
   let (title, unnamed-projects, named-projects) = projects
 
   if type(title) == str {
     title = strong(title)
   }
-  result-content += title
+  result += title
 
   let projects = named-projects.values() + unnamed-projects
 
-  result-content += list(
+  result += list(
     marker: list-marker,
     ..projects.map(project =>
       show-project(project, datetime-format: datetime-format)
     ),
   )
 
-  return block(result-content)
+  return block(result)
 }

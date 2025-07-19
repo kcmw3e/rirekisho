@@ -84,7 +84,7 @@
 //   Other fields of type `str` will be formatted as `text` (which may be
 //   modified via `set`/`show` rules.
 #let show-work-experience(experience, datetime-format: none) = {
-  let result-content = none
+  let result = none
 
   let (company, location, position, timeframe, body) = experience
 
@@ -97,27 +97,27 @@
     company = emph(company)
   }
 
-  result-content += position
+  result += position
 
-  if result-content != none and company != none {
-    result-content += [, ]
+  if result != none and company != none {
+    result += [, ]
   }
-  result-content += company
+  result += company
 
-  if result-content != none and location != none {
-    result-content += [ --- ]
+  if result != none and location != none {
+    result += [ --- ]
   }
-  result-content += location
+  result += location
 
   let timeframe-content = show-timeframe(
     timeframe: timeframe,
     format: datetime-format,
   )
 
-  result-content += [#h(1fr) #timeframe-content]
-  result-content += body
+  result += [#h(1fr) #timeframe-content]
+  result += body
 
-  return block(result-content)
+  return block(result)
 }
 
 // A convenience function to gather a list of work experiences together that can
@@ -158,23 +158,23 @@
 // - See notes on `show-work-experience` for how parts of work experiences are
 //   formatted depending on types, etc.
 #let show-work-section(work, list-marker: none, datetime-format: none) = {
-  let result-content = none
+  let result = none
 
   let (title, unnamed-experiences, named-experiences) = work
 
   if type(title) == str {
     title = strong(title)
   }
-  result-content += title
+  result += title
 
   let experiences = named-experiences.values() + unnamed-experiences
 
-  result-content += list(
+  result += list(
     marker: list-marker,
     ..experiences.map(experience =>
       show-work-experience(experience, datetime-format: datetime-format)
     ),
   )
 
-  return block(result-content)
+  return block(result)
 }

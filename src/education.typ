@@ -90,7 +90,7 @@
 //   of type `str` will be formatted as `text` (which may be modified via
 //   `set`/`show` rules.
 #let show-education(education, datetime-format: none) = {
-  let result-content = none
+  let result = none
 
   let (institution, location, kind, study, timeframe, score, scale) = education
 
@@ -106,12 +106,12 @@
     format: datetime-format,
   )
 
-  result-content += institution
+  result += institution
 
-  if result-content != none and location != none {
-    result-content += [ --- ]
+  if result != none and location != none {
+    result += [ --- ]
   }
-  result-content += location
+  result += location
 
   let academic-content = none
   academic-content += kind + [ ] + study
@@ -126,9 +126,9 @@
 
   academic-content += [#h(1fr) #timeframe-content]
 
-  result-content += list(marker: "", academic-content)
+  result += list(marker: "", academic-content)
 
-  return block(result-content)
+  return block(result)
 }
 
 // A convenience function to gather a list of educations together that can be
@@ -185,14 +185,14 @@
   datetime-format: none,
   should-group-institutions: false,
 ) = {
-  let result-content = none
+  let result = none
 
   let (title, unnamed-educations, named-educations) = education
 
   if type(title) == str {
     title = strong(title)
   }
-  result-content += title
+  result += title
 
   let educations = named-educations.values() + unnamed-educations
 
@@ -229,7 +229,7 @@
     }
 
     for (institution, educations) in institutions-map {
-      result-content += list(
+      result += list(
         marker: list-marker,
         ..educations.enumerate().map(index-and-education => {
           let (index, education) = index-and-education
@@ -252,12 +252,12 @@
     }
   } else {
     for education in educations {
-      result-content += list(
+      result += list(
         marker: list-marker,
         show-education(education, datetime-format: datetime-format),
       )
     }
   }
 
-  return block(result-content)
+  return block(result)
 }

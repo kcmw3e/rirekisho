@@ -56,7 +56,7 @@
 //     The format string passed to `datetime.display`. If `none`, the format is
 //     simply the name of the month followed by the year.
 #let show-timeframe-with-endpoints(start, end, format: none) = {
-  let result-content = none
+  let result = none
 
   // Format `datetime` fields ahead of time so they can be treated like other
   // content down the line.
@@ -67,13 +67,13 @@
     end = show-datetime(end, format: format)
   }
 
-  result-content += start
+  result += start
   if start != none or end != none {
-    result-content += [--]
+    result += [--]
   }
-  result-content += end
+  result += end
 
-  return result-content
+  return result
 }
 
 
@@ -105,16 +105,16 @@
 //        inserted *unless* both endpoints are `none`, in which case just `none`
 //        is returned.
 #let show-timeframe(timeframe: none, format: none) = {
-  let result-content = none
+  let result = none
 
   if type(timeframe) in (dictionary, array) {
     let (start, end) = timeframe
-    result-content += show-timeframe-with-endpoints(start, end, format: format)
+    result += show-timeframe-with-endpoints(start, end, format: format)
   } else if type(timeframe) == datetime {
-    result-content += show-datetime(timeframe, format: format)
+    result += show-datetime(timeframe, format: format)
   } else {
-    result-content += [#timeframe]
+    result += [#timeframe]
   }
 
-  return result-content
+  return result
 }
