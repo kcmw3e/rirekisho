@@ -21,6 +21,7 @@
 // ```
 // -----------------------------------------------------------------------------
 
+#import "style.typ"
 #import "timeframe.typ": show-timeframe
 
 // Define a project.
@@ -83,7 +84,7 @@
   let (title, location, timeframe, body) = project
 
   if type(title) == str {
-    title = emph(title)
+    title = style.element(title)
   }
 
 
@@ -93,18 +94,22 @@
     result += [ --- ]
   }
 
-  result += location
+  result += style.location(location)
 
   let timeframe-content = show-timeframe(
     timeframe: timeframe,
     format: datetime-format,
   )
 
+  // if timeframe-content != none {
+  //   result-content += h(1fr) + timeframe-content
+  // }
+
   if timeframe-content != none {
     result += h(1fr)
   }
 
-  result += timeframe-content
+  result += style.timeframe(timeframe-content)
 
   if body != none {
     result += linebreak()
@@ -156,7 +161,7 @@
   let (title, unnamed-projects, named-projects) = projects
 
   if type(title) == str {
-    title = strong(title)
+    title = style.section(title)
   }
   result += title
 

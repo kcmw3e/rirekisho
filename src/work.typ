@@ -21,6 +21,7 @@
 // ```
 // -----------------------------------------------------------------------------
 
+#import "style.typ"
 #import "timeframe.typ": show-timeframe
 
 // Define a work experience.
@@ -91,10 +92,10 @@
   // Auto-format position and company fields as italic if they are strings, but
   // leave content alone.
   if type(position) == str {
-    position = emph(position)
+    position = style.element(position)
   }
   if type(company) == str {
-    company = emph(company)
+    company = style.element(company)
   }
 
   result += position
@@ -107,14 +108,14 @@
   if result != none and location != none {
     result += [ --- ]
   }
-  result += location
+  result += style.location(location)
 
   let timeframe-content = show-timeframe(
     timeframe: timeframe,
     format: datetime-format,
   )
 
-  result += [#h(1fr) #timeframe-content]
+  result += [#h(1fr) #style.timeframe(timeframe-content)]
   result += body
 
   return block(result)
@@ -160,7 +161,7 @@
   let (title, unnamed-experiences, named-experiences) = work
 
   if type(title) == str {
-    title = strong(title)
+    title = style.section(title)
   }
   result += title
 

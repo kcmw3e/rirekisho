@@ -20,6 +20,7 @@
 // ```
 // -----------------------------------------------------------------------------
 
+#import "style.typ"
 #import "timeframe.typ": show-timeframe
 
 // Define a course of study, such as a degree earned at a university or a
@@ -95,7 +96,7 @@
   let (institution, location, kind, study, timeframe, score, scale) = education
 
   if type(institution) == str {
-    institution = emph(institution)
+    institution = style.element(institution)
   }
 
   // Format `date` if it's a `datetime` so it can be used as content when added
@@ -111,7 +112,7 @@
   if result != none and location != none {
     result += [ --- ]
   }
-  result += location
+  result += style.location(location)
 
   let academic-content = none
   academic-content += kind + [ ] + study
@@ -124,7 +125,7 @@
     }
   }
 
-  academic-content += [#h(1fr) #timeframe-content]
+  academic-content += [#h(1fr) #style.timeframe(timeframe-content)]
 
   result += list(academic-content)
 
@@ -186,7 +187,7 @@
   let (title, unnamed-educations, named-educations) = education
 
   if type(title) == str {
-    title = strong(title)
+    title = style.section(title)
   }
   result += title
 
