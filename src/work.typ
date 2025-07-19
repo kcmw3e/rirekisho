@@ -117,7 +117,7 @@
   result-content += [#h(1fr) #timeframe-content]
   result-content += body
 
-  return result-content
+  return block(result-content)
 }
 
 // A convenience function to gather a list of work experiences together that can
@@ -176,5 +176,5 @@
     ),
   )
 
-  return result-content
+  return block(result-content)
 }

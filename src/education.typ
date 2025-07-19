@@ -132,7 +132,7 @@
 
   result-content += list(marker: "", academic-content)
 
-  return result-content
+  return block(result-content)
 }
 
 // A convenience function to gather a list of educations together that can be
@@ -263,5 +263,5 @@
     }
   }
 
-  return result-content
+  return block(result-content)
 }

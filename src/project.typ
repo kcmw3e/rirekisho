@@ -111,7 +111,7 @@
 
   result-content += body
 
-  return result-content
+  return block(result-content)
 }
 
 
@@ -175,5 +175,5 @@
     ),
   )
 
-  return result-content
+  return block(result-content)
 }
