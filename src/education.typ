@@ -20,6 +20,8 @@
 // ```
 // -----------------------------------------------------------------------------
 
+#import "timeframe.typ": show-timeframe
+
 // Define a course of study, such as a degree earned at a university or a
 // certification, etc.
 //
@@ -33,9 +35,9 @@
 //     any kind of education can probably be represented.
 // - `study`: `str` | `content` | `none`
 //     The area of study during the course of education, such as a major.
-// - `date`: `str` | `content` | `datetime` | `int` | `none`
-//     The date on which the degree was earned. If given as type `int`, it
-//     should indicate the year in which the degree was earned.
+// - `timeframe`: `datetime` | `dictionary` | `array` | `any`
+//     The timeframe in which the education was completed. It may be any valid
+//     data type that can be passed to `show-timeframe`.
 // - `score`: `str` | `content` | `float` | `none`
 //     The overall score earned for the degree. Typically this is a GPA (Grade
 //     Point Average) or some scoring system for grades throughout the course of
@@ -48,7 +50,7 @@
   location: none,
   kind: none,
   study: none,
-  date: none,
+  timeframe: none,
   score: none,
   scale: none,
 ) = {
@@ -57,7 +59,7 @@
     location: location,
     kind: kind,
     study: study,
-    date: date,
+    timeframe: timeframe,
     score: score,
     scale: scale,
   )
@@ -76,7 +78,7 @@
 // - `education`: `dictionary`
 //     The education to show, which should formatted like the one returned from
 //     `Education`.
-// - `date-format`: `str` | `none`
+// - `datetime-format`: `str` | `none`
 //     The format string passed to `datetime.display`. If `none`, the format is
 //     simply the name of the month followed by the year.
 //
@@ -87,14 +89,10 @@
 // - The `institution` field will be italicized if of type `str`. Other fields
 //   of type `str` will be formatted as `text` (which may be modified via
 //   `set`/`show` rules.
-#let show-education(education, date-format: none) = {
-  if date-format == none {
-    date-format = "[month repr:short] [year]"
-  }
-
+#let show-education(education, datetime-format: none) = {
   let result-content = none
 
-  let (institution, location, kind, study, date, score, scale) = education
+  let (institution, location, kind, study, timeframe, score, scale) = education
 
   if type(institution) == str {
     institution = emph(institution)
@@ -102,13 +100,11 @@
 
   // Format `date` if it's a `datetime` so it can be used as content when added
   // to the result.
-  if type(date) == datetime {
-    date = date.display(date-format)
-  }
 
-  if type(date) != content {
-    date = emph[#date]
-  }
+  let timeframe-content = show-timeframe(
+    timeframe: timeframe,
+    format: datetime-format,
+  )
 
   result-content += institution
 
@@ -128,7 +124,7 @@
     }
   }
 
-  academic-content += [#h(1fr) #date]
+  academic-content += [#h(1fr) #timeframe-content]
 
   result-content += list(marker: "", academic-content)
 
@@ -186,7 +182,7 @@
 #let show-education-section(
   education,
   list-marker: "",
-  date-format: none,
+  datetime-format: none,
   should-group-institutions: false,
 ) = {
   let result-content = none
@@ -250,7 +246,7 @@
             education.institution = none
             education.location = none
           }
-          return show-education(education, date-format: date-format)
+          return show-education(education, datetime-format: datetime-format)
         })
       )
     }
@@ -258,7 +254,7 @@
     for education in educations {
       result-content += list(
         marker: list-marker,
-        show-education(education, date-format: date-format),
+        show-education(education, datetime-format: datetime-format),
       )
     }
   }
