@@ -122,7 +122,7 @@
     }
   }
 
-  academic-content += [#h(1fr) #style.timeframe(timeframe-content)]
+  result += [#h(1fr) #style.timeframe(timeframe-content)]
 
   result += list(academic-content)
 
@@ -157,27 +157,15 @@
 // - `date-format`: `str` | `none`
 //     The date format to use for displaying educations. See `show-education`
 //     for details.
-// - `should-group-institutions`: `bool`
-//     Whether the educations should be grouped by institution. The groups will
-//     be ordered based on the order in which institutions are found by
-//     searching through the educations in the order they would be displayed
-//     ordinarily. This means that, for example, if education 'A' and 'C' both
-//     share institution 'I1', and education 'B' with institution 'I2' was
-//     ordered between the two, the resulting group will be 'A' and 'C' under
-//     'I1' followed by 'B' under 'I2'.
 //
 // # Notes
 // -  If the education section's title is passed as type `str`, the title will
 //    be emboldened; otherwise it is left as-is.
 // - See notes on `show-education` for how parts of educations are formatted
 //   depending on types, etc.
-// TODO: check if the below comment is actually true
-// - If the educations are to be grouped by institution, any education that does
-//   not have an institution (e.g. it is `none`) will be ignored.
 #let show-education-section(
   education,
   datetime-format: none,
-  should-group-institutions: false,
 ) = {
   let result = none
 
@@ -190,65 +178,10 @@
 
   let educations = named-educations.values() + unnamed-educations
 
-  if should-group-institutions {
-    // TODO: clean up this branch; `institutions-map` should likely be a
-    // dictionary, and can probably be created in a simpler way with the array
-    // method `fold`
-
-    // Collect a list of institutions to a corresponding list of educations
-    // (e.g. an array of 2-element arrays which consist of
-    //   1. an institution
-    //   2. an array of its corresponding educations
-    let institutions-map = ()
-
-    for education in educations {
-      let institution = education.institution
-
-      let position = institutions-map.position(
-        group => group.first() == education.institution
-      )
-
-      if position != none {
-        let (
-          group-institution,
-          group-educations,
-        ) = institutions-map.at(position)
-
-        group-educations.push(education)
-
-        institutions-map.at(position) = (group-institution, group-educations)
-      } else {
-        institutions-map.push((institution, (education,)))
-      }
-    }
-
-    for (institution, educations) in institutions-map {
-      result += list(
-        ..educations.enumerate().map(index-and-education => {
-          let (index, education) = index-and-education
-          // TODO: make this not modify the input object (e.g. probably copy
-          // `education` and then update `.institution` and `.location` instead
-          // of directly modify `education`), since this could have unexpected
-          // effects to callers if they expect the input to be unmodified
-          if (index > 0) {
-            // Setting the `institution` and `location` fields to `none` causes
-            // the first line in the output from `show-education` to be ignored,
-            // which essentially acts as a grouping mechanism for educations
-            // since subsequent educations show as list items below the same
-            // institution heading.
-            education.institution = none
-            education.location = none
-          }
-          return show-education(education, datetime-format: datetime-format)
-        })
-      )
-    }
-  } else {
-    for education in educations {
-      result += list(
-        show-education(education, datetime-format: datetime-format),
-      )
-    }
+  for education in educations {
+    result += list(
+      show-education(education, datetime-format: datetime-format),
+    )
   }
 
   return block(result)
