@@ -99,9 +99,6 @@
     institution = style.element(institution)
   }
 
-  // Format `date` if it's a `datetime` so it can be used as content when added
-  // to the result.
-
   let timeframe-content = show-timeframe(
     timeframe: timeframe,
     format: datetime-format,
