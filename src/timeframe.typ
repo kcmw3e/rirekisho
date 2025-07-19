@@ -112,7 +112,7 @@
     let (start, end) = timeframe
     result-content += show-timeframe-with-endpoints(start, end, format: format)
   } else if type(timeframe) == datetime {
-    result-content += show-datetime(timeframe, format)
+    result-content += show-datetime(timeframe, format: format)
   } else {
     result-content += timeframe
   }
