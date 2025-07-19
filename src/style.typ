@@ -7,6 +7,28 @@
 // to be shipped as one easily-applied piece.
 // 
 // See the default style as an example for writing custom styles.
+//
+// Here is a usage example:
+// ```typst
+// #let wacky-style = new-style-from-default((
+//   // Set the name to always display this instead of the configured name
+//   name: (value) => {"Whackamole"},
+//   // Set the section text to be much larger, but keep the rest of the default
+//   // style
+//   section: (value) => {
+//     [
+//       #set text(size: 20pt)
+//       #(default-style.section)(value)
+//     ]
+//   },
+//   // Change elements to have a red outline and white infill
+//   element: (value) => {
+//     text(size: 12pt, stroke: 0.2mm + red, fill: white, value)
+//   },
+// ))
+
+// #style.update(wacky-style)
+// ```
 // -----------------------------------------------------------------------------
 
 // The default style. This should also be used as an example/template for
