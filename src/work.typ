@@ -145,9 +145,6 @@
 // - `work`: `dictionary`
 //     The work section to show, which should be a dictionary formatted like the
 //     one returned from `Work-section`.
-// - `list-marker`: `str` | `content` | `none`
-//     The marker to use for the work experience list. This is directly passed
-//     to `list`.
 // - `datetime-format`: `str` | `none`
 //     The date format to use for displaying work experiences. See
 //     `show-work-experience` for details.
@@ -157,7 +154,7 @@
 //    emboldened; otherwise it is left as-is.
 // - See notes on `show-work-experience` for how parts of work experiences are
 //   formatted depending on types, etc.
-#let show-work-section(work, list-marker: none, datetime-format: none) = {
+#let show-work-section(work, datetime-format: none) = {
   let result = none
 
   let (title, unnamed-experiences, named-experiences) = work
@@ -170,7 +167,6 @@
   let experiences = named-experiences.values() + unnamed-experiences
 
   result += list(
-    marker: list-marker,
     ..experiences.map(experience =>
       show-work-experience(experience, datetime-format: datetime-format)
     ),

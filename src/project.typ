@@ -141,9 +141,6 @@
 // - `projects`: `dictionary`
 //     The project section to show, which should be a dictionary formatted like
 //     the one returned from `Project-section`.
-// - `list-marker`: `str` | `content` | `none`
-//     The marker to use for the project list. This is directly passed to
-//     `list`.
 // - `datetime-format`: `str` | `none`
 //     The date format to use for displaying projects. See `show-project` for
 //     details.
@@ -153,11 +150,7 @@
 //    emboldened; otherwise it is left as-is.
 // - See notes on `show-project` for how parts of projects are formatted
 //   depending on types, etc.
-#let show-project-section(
-  projects,
-  list-marker: none,
-  datetime-format: none,
-) = {
+#let show-project-section(projects, datetime-format: none) = {
   let result = none
 
   let (title, unnamed-projects, named-projects) = projects
@@ -170,7 +163,6 @@
   let projects = named-projects.values() + unnamed-projects
 
   result += list(
-    marker: list-marker,
     ..projects.map(project =>
       show-project(project, datetime-format: datetime-format)
     ),

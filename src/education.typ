@@ -126,7 +126,7 @@
 
   academic-content += [#h(1fr) #timeframe-content]
 
-  result += list(marker: "", academic-content)
+  result += list(academic-content)
 
   return block(result)
 }
@@ -156,9 +156,6 @@
 // - `education`: `dictionary`
 //     The education section to show, which should be a dictionary formatted
 //     like the one returned from `Education-section`.
-// - `list-marker`: `str` | `content` | `none`
-//     The marker to use for the education list. This is directly passed to
-//     `list`.
 // - `date-format`: `str` | `none`
 //     The date format to use for displaying educations. See `show-education`
 //     for details.
@@ -181,7 +178,6 @@
 //   not have an institution (e.g. it is `none`) will be ignored.
 #let show-education-section(
   education,
-  list-marker: "",
   datetime-format: none,
   should-group-institutions: false,
 ) = {
@@ -230,7 +226,6 @@
 
     for (institution, educations) in institutions-map {
       result += list(
-        marker: list-marker,
         ..educations.enumerate().map(index-and-education => {
           let (index, education) = index-and-education
           // TODO: make this not modify the input object (e.g. probably copy
@@ -253,7 +248,6 @@
   } else {
     for education in educations {
       result += list(
-        marker: list-marker,
         show-education(education, datetime-format: datetime-format),
       )
     }
