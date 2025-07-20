@@ -38,13 +38,16 @@ build: make-build-dir
 
     cp -rt $version_dir $manifest
 
-test: make-test-dir
+test pattern="": make-test-dir
     #!/usr/bin/env fish
 
-    for file in test/*.typ
+    set files (find 'test/' -type f -name '*{{pattern}}*.typ')
+
+    for file in $files
         set output_file (
             string join '/' '{{build_dir}}' (path change-extension 'pdf' $file)
         )
+        echo $file
         typst c --root . $file $output_file
     end
 
