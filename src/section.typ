@@ -49,20 +49,12 @@
 // - `section`: `dictionary`
 //     The resume section to show, which should be a dictionary formatted like
 //     the one returned from `Section`.
-//
-// # Notes
-// - If the section's title is passed as type `str`, the title will be
-//    emboldened; otherwise it is left as-is.
-// - All other formatting is left up to the `section.show-item` function.
 #let show-section(section) = {
   let result = none
 
   let (title, show-item, unnamed-items, named-items) = section
 
-  // TODO: remove this check---always do the styling
-  if type(title) == str {
-    title = style.section(title)
-  }
+  title = style.section(title)
   result += title
 
   let items = named-items.values() + unnamed-items

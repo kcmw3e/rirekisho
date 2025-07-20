@@ -84,18 +84,12 @@
 // # Notes
 // - If no score is provided, the scale will not be displayed even if it is
 //   provided.
-// - Any field in the education that is of type `content` will not be modified.
-// - The `institution` field will be italicized if of type `str`. Other fields
-//   of type `str` will be formatted as `text` (which may be modified via
-//   `set`/`show` rules.
 #let show-education(education) = {
   let result = none
 
   let (institution, location, kind, study, timeframe, score, scale) = education
 
-  if type(institution) == str {
-    institution = style.element(institution)
-  }
+  institution = style.element(institution)
 
   let timeframe-content = show-timeframe(timeframe)
 

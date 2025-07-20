@@ -68,21 +68,12 @@
 // - `project`: `dictionary`
 //     The project to show; it should be a dictionary formatted like the one
 //     returned from `Project`.
-//
-// # Notes
-// - Any field in the project that is of type `content` will not be modified.
-// - The `title` field will be italicized if of type `str`. Other fields  of
-//   type `str` will be formatted as `text` (which may be modified via
-//   `set`/`show` rules.
 #let show-project(project) = {
   let result = none
 
   let (title, location, timeframe, body) = project
 
-  if type(title) == str {
-    title = style.element(title)
-  }
-
+  title = style.element(title)
 
   result += title
 

@@ -75,26 +75,13 @@
 // - `experience`: `dictionary`
 //     The experience to show; it should be a dictionary formatted like the one
 //     returned from `Work-experience`.
-//
-// # Notes
-// - Any field in the work experience that is of type `content` will not be
-//   modified.
-// - The `position` and `company` fields will be italicized if of type `str`.
-//   Other fields of type `str` will be formatted as `text` (which may be
-//   modified via `set`/`show` rules.
 #let show-work-experience(experience) = {
   let result = none
 
   let (company, location, position, timeframe, body) = experience
 
-  // Auto-format position and company fields as italic if they are strings, but
-  // leave content alone.
-  if type(position) == str {
-    position = style.element(position)
-  }
-  if type(company) == str {
-    company = style.element(company)
-  }
+  position = style.element(position)
+  company = style.element(company)
 
   result += position
 
