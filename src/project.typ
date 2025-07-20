@@ -102,10 +102,6 @@
     format: datetime-format,
   )
 
-  // if timeframe-content != none {
-  //   result-content += h(1fr) + timeframe-content
-  // }
-
   if timeframe-content != none {
     result += h(1fr)
   }
