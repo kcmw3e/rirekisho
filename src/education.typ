@@ -78,8 +78,8 @@
 //
 // # Parameters
 // - `education`: `dictionary`
-//     The education to show, which should formatted like the one returned from
-//     `Education`.
+//     The education to show, which should be formatted like the one returned
+//     from `Education`.
 //
 // # Notes
 // - If no score is provided, the scale will not be displayed even if it is
