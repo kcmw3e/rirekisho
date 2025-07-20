@@ -9,7 +9,7 @@
 //   location: "Nowhere",
 //   kind: "PhD",
 //   study: "Omniscience",
-//   date: datetime(year: 2042, month: 5, day: 1),
+//   timeframe: datetime(year: 2042, month: 5, day: 1),
 //   score: $infinity$,
 //   scale: $infinity$,
 // )
@@ -71,7 +71,7 @@
 //
 // The education will be formatted as follows:
 //   [`institution`]{ --- }[`location`]
-//   [`kind`] [`study`]{ --- }[`score`]{/}[`scale`] ... [`date`]
+//   [`kind`] [`study`]{ --- }[`score`]{/}[`scale`] ... [`timeframe`]
 // Where anything in "{}" will be inserted depending on whether both of the
 // fields adjacent to it exist. Everything left of the "..." will be
 // left-aligned, and everything right of it will be right-aligned.
