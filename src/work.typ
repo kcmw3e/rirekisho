@@ -17,10 +17,12 @@
 //
 // #let work = Work-section(lemonade-stand)
 //
-// #show-work-section(work)
+// #show-section(work)
 // ```
 // -----------------------------------------------------------------------------
 
+#import "section.typ": Section
+#import "style.typ"
 #import "timeframe.typ": show-timeframe
 
 // Define a work experience.
@@ -73,29 +75,13 @@
 // - `experience`: `dictionary`
 //     The experience to show; it should be a dictionary formatted like the one
 //     returned from `Work-experience`.
-// - `datetime-format`: `str` | `none`
-//     The format string passed to `datetime.display`. See `show-timeframe` for
-//     details.
-//
-// # Notes
-// - Any field in the work experience that is of type `content` will not be
-//   modified.
-// - The `position` and `company` fields will be italicized if of type `str`.
-//   Other fields of type `str` will be formatted as `text` (which may be
-//   modified via `set`/`show` rules.
-#let show-work-experience(experience, datetime-format: none) = {
+#let show-work-experience(experience) = {
   let result = none
 
   let (company, location, position, timeframe, body) = experience
 
-  // Auto-format position and company fields as italic if they are strings, but
-  // leave content alone.
-  if type(position) == str {
-    position = emph(position)
-  }
-  if type(company) == str {
-    company = emph(company)
-  }
+  position = style.element(position)
+  company = style.element(company)
 
   result += position
 
@@ -107,14 +93,11 @@
   if result != none and location != none {
     result += [ --- ]
   }
-  result += location
+  result += style.location(location)
 
-  let timeframe-content = show-timeframe(
-    timeframe: timeframe,
-    format: datetime-format,
-  )
+  let timeframe-content = show-timeframe(timeframe)
 
-  result += [#h(1fr) #timeframe-content]
+  result += [#h(1fr) #style.timeframe(timeframe-content)]
   result += body
 
   return block(result)
@@ -132,49 +115,9 @@
 //     Arguments may be named or not; in either case they are appended in the
 //     order in which they were passed, with the named experiences first.
 #let Work-section(title: "Work Experience", ..experiences) = {
-  return (
-    title: title,
-    unnamed-experiences: experiences.pos(),
-    named-experiences: experiences.named(),
+  return Section(
+    title,
+    show-work-experience,
+    ..experiences,
   )
-}
-
-// Turn a work section into content.
-//
-// # Parameters
-// - `work`: `dictionary`
-//     The work section to show, which should be a dictionary formatted like the
-//     one returned from `Work-section`.
-// - `list-marker`: `str` | `content` | `none`
-//     The marker to use for the work experience list. This is directly passed
-//     to `list`.
-// - `datetime-format`: `str` | `none`
-//     The date format to use for displaying work experiences. See
-//     `show-work-experience` for details.
-//
-// # Notes
-// -  If the work section's title is passed as type `str`, the title will be
-//    emboldened; otherwise it is left as-is.
-// - See notes on `show-work-experience` for how parts of work experiences are
-//   formatted depending on types, etc.
-#let show-work-section(work, list-marker: none, datetime-format: none) = {
-  let result = none
-
-  let (title, unnamed-experiences, named-experiences) = work
-
-  if type(title) == str {
-    title = strong(title)
-  }
-  result += title
-
-  let experiences = named-experiences.values() + unnamed-experiences
-
-  result += list(
-    marker: list-marker,
-    ..experiences.map(experience =>
-      show-work-experience(experience, datetime-format: datetime-format)
-    ),
-  )
-
-  return block(result)
 }

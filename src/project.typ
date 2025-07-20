@@ -17,10 +17,12 @@
 //
 // #let projects = Project-section(hello-world)
 //
-// #show-project-section(projects)
+// #show-section(projects)
 // ```
 // -----------------------------------------------------------------------------
 
+#import "section.typ": Section
+#import "style.typ"
 #import "timeframe.typ": show-timeframe
 
 // Define a project.
@@ -66,26 +68,12 @@
 // - `project`: `dictionary`
 //     The project to show; it should be a dictionary formatted like the one
 //     returned from `Project`.
-// - `datetime-format`: `str` | `none`
-//     The format string passed to `datetime.display`. If `none`, the format is
-//     simply the name of the month followed by the year. This only takes effect
-//     when a project `start` or `end` field is a `datetime` and gets ignored
-//     otherwise.
-//
-// # Notes
-// - Any field in the project that is of type `content` will not be modified.
-// - The `title` field will be italicized if of type `str`. Other fields  of
-//   type `str` will be formatted as `text` (which may be modified via
-//   `set`/`show` rules.
-#let show-project(project, datetime-format: none) = {
+#let show-project(project) = {
   let result = none
 
   let (title, location, timeframe, body) = project
 
-  if type(title) == str {
-    title = emph(title)
-  }
-
+  title = style.element(title)
 
   result += title
 
@@ -93,18 +81,15 @@
     result += [ --- ]
   }
 
-  result += location
+  result += style.location(location)
 
-  let timeframe-content = show-timeframe(
-    timeframe: timeframe,
-    format: datetime-format,
-  )
+  let timeframe-content = show-timeframe(timeframe)
 
   if timeframe-content != none {
     result += h(1fr)
   }
 
-  result += timeframe-content
+  result += style.timeframe(timeframe-content)
 
   if body != none {
     result += linebreak()
@@ -128,53 +113,9 @@
 //     named or not; in either case they are appended in the order in which they
 //     were passed, with the named projects first.
 #let Project-section(title: none, ..projects) = {
-  return (
-    title: title,
-    unnamed-projects: projects.pos(),
-    named-projects: projects.named(),
+  return Section(
+    title,
+    show-project,
+    ..projects,
   )
-}
-
-// Turn a project section into content.
-//
-// # Parameters
-// - `projects`: `dictionary`
-//     The project section to show, which should be a dictionary formatted like
-//     the one returned from `Project-section`.
-// - `list-marker`: `str` | `content` | `none`
-//     The marker to use for the project list. This is directly passed to
-//     `list`.
-// - `datetime-format`: `str` | `none`
-//     The date format to use for displaying projects. See `show-project` for
-//     details.
-//
-// # Notes
-// -  If the project section's title is passed as type `str`, the title will be
-//    emboldened; otherwise it is left as-is.
-// - See notes on `show-project` for how parts of projects are formatted
-//   depending on types, etc.
-#let show-project-section(
-  projects,
-  list-marker: none,
-  datetime-format: none,
-) = {
-  let result = none
-
-  let (title, unnamed-projects, named-projects) = projects
-
-  if type(title) == str {
-    title = strong(title)
-  }
-  result += title
-
-  let projects = named-projects.values() + unnamed-projects
-
-  result += list(
-    marker: list-marker,
-    ..projects.map(project =>
-      show-project(project, datetime-format: datetime-format)
-    ),
-  )
-
-  return block(result)
 }
