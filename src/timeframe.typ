@@ -22,20 +22,12 @@
   "[month repr:short] [year]",
 )
 
-// Return content of the provided datetime in the provided format. If `format`
-// is `none`, the default format will be retrieved from the state
-// `default-datetime-format`.
+// Return content of the provided datetime.
 //
 // # Parameters
 // - `datetime`: `datetime`
 //     The object to format.
-// - `format`: `str` | `none`
-//     The format to use, which must be a valid argument to `datetime.display`.
-#let show-datetime(datetime, format: none) = {
-  if format != none {
-    return datetime.display(format)
-  }
-
+#let show-datetime(datetime) = {
   return context datetime.display(default-datetime-format.get())
 }
 
@@ -52,19 +44,16 @@
 //     The start of the timeframe.
 // - `end`: `str` | `content` | `datetime` | `none`
 //     The end of the timeframe.
-// - `format`: `str` | `none`
-//     The format string passed to `datetime.display`. If `none`, the format is
-//     simply the name of the month followed by the year.
-#let show-timeframe-with-endpoints(start, end, format: none) = {
+#let show-timeframe-with-endpoints(start, end) = {
   let result = none
 
   // Format `datetime` fields ahead of time so they can be treated like other
   // content down the line.
   if type(start) == datetime {
-    start = show-datetime(start, format: format)
+    start = show-datetime(start)
   }
   if type(end) == datetime {
-    end = show-datetime(end, format: format)
+    end = show-datetime(end)
   }
 
   result += start
@@ -83,10 +72,6 @@
 // - `timeframe`: `datetime` | `dictionary` | `array` | `any`
 //     The timeframe to convert into content. See notes below for more how the
 //     parameter can be formatted and how it's handled.
-// - `format`: `str` | `none`
-//     The format string passed to `datetime.display` if applicable. If `none`,
-//     the format is taken from the state `default-datetime-format` (see also
-//     `show-timeframe-with-endpoints` and `show-datetime` for more details.
 //
 // # Notes
 // - The two forms a timeframe can take:
@@ -104,14 +89,14 @@
 //        en-dash will be inserted in the middle. The en-dash will always be
 //        inserted *unless* both endpoints are `none`, in which case just `none`
 //        is returned.
-#let show-timeframe(timeframe: none, format: none) = {
+#let show-timeframe(timeframe) = {
   let result = none
 
   if type(timeframe) in (dictionary, array) {
     let (start, end) = timeframe
-    result += show-timeframe-with-endpoints(start, end, format: format)
+    result += show-timeframe-with-endpoints(start, end)
   } else if type(timeframe) == datetime {
-    result += show-datetime(timeframe, format: format)
+    result += show-datetime(timeframe)
   } else {
     result += [#timeframe]
   }

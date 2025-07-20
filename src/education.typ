@@ -80,9 +80,6 @@
 // - `education`: `dictionary`
 //     The education to show, which should formatted like the one returned from
 //     `Education`.
-// - `datetime-format`: `str` | `none`
-//     The format string passed to `datetime.display`. If `none`, the format is
-//     simply the name of the month followed by the year.
 //
 // # Notes
 // - If no score is provided, the scale will not be displayed even if it is
@@ -91,7 +88,7 @@
 // - The `institution` field will be italicized if of type `str`. Other fields
 //   of type `str` will be formatted as `text` (which may be modified via
 //   `set`/`show` rules.
-#let show-education(education, datetime-format: none) = {
+#let show-education(education) = {
   let result = none
 
   let (institution, location, kind, study, timeframe, score, scale) = education
@@ -100,10 +97,7 @@
     institution = style.element(institution)
   }
 
-  let timeframe-content = show-timeframe(
-    timeframe: timeframe,
-    format: datetime-format,
-  )
+  let timeframe-content = show-timeframe(timeframe)
 
   result += institution
 

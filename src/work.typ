@@ -75,9 +75,6 @@
 // - `experience`: `dictionary`
 //     The experience to show; it should be a dictionary formatted like the one
 //     returned from `Work-experience`.
-// - `datetime-format`: `str` | `none`
-//     The format string passed to `datetime.display`. See `show-timeframe` for
-//     details.
 //
 // # Notes
 // - Any field in the work experience that is of type `content` will not be
@@ -85,7 +82,7 @@
 // - The `position` and `company` fields will be italicized if of type `str`.
 //   Other fields of type `str` will be formatted as `text` (which may be
 //   modified via `set`/`show` rules.
-#let show-work-experience(experience, datetime-format: none) = {
+#let show-work-experience(experience) = {
   let result = none
 
   let (company, location, position, timeframe, body) = experience
@@ -111,10 +108,7 @@
   }
   result += style.location(location)
 
-  let timeframe-content = show-timeframe(
-    timeframe: timeframe,
-    format: datetime-format,
-  )
+  let timeframe-content = show-timeframe(timeframe)
 
   result += [#h(1fr) #style.timeframe(timeframe-content)]
   result += body

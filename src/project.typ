@@ -68,18 +68,13 @@
 // - `project`: `dictionary`
 //     The project to show; it should be a dictionary formatted like the one
 //     returned from `Project`.
-// - `datetime-format`: `str` | `none`
-//     The format string passed to `datetime.display`. If `none`, the format is
-//     simply the name of the month followed by the year. This only takes effect
-//     when a project `start` or `end` field is a `datetime` and gets ignored
-//     otherwise.
 //
 // # Notes
 // - Any field in the project that is of type `content` will not be modified.
 // - The `title` field will be italicized if of type `str`. Other fields  of
 //   type `str` will be formatted as `text` (which may be modified via
 //   `set`/`show` rules.
-#let show-project(project, datetime-format: none) = {
+#let show-project(project) = {
   let result = none
 
   let (title, location, timeframe, body) = project
@@ -97,10 +92,7 @@
 
   result += style.location(location)
 
-  let timeframe-content = show-timeframe(
-    timeframe: timeframe,
-    format: datetime-format,
-  )
+  let timeframe-content = show-timeframe(timeframe)
 
   if timeframe-content != none {
     result += h(1fr)
