@@ -74,6 +74,10 @@
 // automatically.
 #let style = state("style-state", default-style)
 
+// Reset the current style to the default style.
+#let reset-style-to-default() = {
+  style.update(default-style)
+}
 
 // The below functions are convenience for accessing the elements in the style
 // since it can be cumbersome to do so manually.
