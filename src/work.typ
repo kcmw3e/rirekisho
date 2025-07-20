@@ -17,10 +17,11 @@
 //
 // #let work = Work-section(lemonade-stand)
 //
-// #show-work-section(work)
+// #show-section(work)
 // ```
 // -----------------------------------------------------------------------------
 
+#import "section.typ": Section
 #import "style.typ"
 #import "timeframe.typ": show-timeframe
 
@@ -133,45 +134,9 @@
 //     Arguments may be named or not; in either case they are appended in the
 //     order in which they were passed, with the named experiences first.
 #let Work-section(title: "Work Experience", ..experiences) = {
-  return (
-    title: title,
-    unnamed-experiences: experiences.pos(),
-    named-experiences: experiences.named(),
+  return Section(
+    title,
+    show-work-experience,
+    ..experiences,
   )
-}
-
-// Turn a work section into content.
-//
-// # Parameters
-// - `work`: `dictionary`
-//     The work section to show, which should be a dictionary formatted like the
-//     one returned from `Work-section`.
-// - `datetime-format`: `str` | `none`
-//     The date format to use for displaying work experiences. See
-//     `show-work-experience` for details.
-//
-// # Notes
-// -  If the work section's title is passed as type `str`, the title will be
-//    emboldened; otherwise it is left as-is.
-// - See notes on `show-work-experience` for how parts of work experiences are
-//   formatted depending on types, etc.
-#let show-work-section(work, datetime-format: none) = {
-  let result = none
-
-  let (title, unnamed-experiences, named-experiences) = work
-
-  if type(title) == str {
-    title = style.section(title)
-  }
-  result += title
-
-  let experiences = named-experiences.values() + unnamed-experiences
-
-  result += list(
-    ..experiences.map(experience =>
-      show-work-experience(experience, datetime-format: datetime-format)
-    ),
-  )
-
-  return block(result)
 }

@@ -16,10 +16,11 @@
 //
 // #let education = Education-section(free-degree)
 //
-// #show-education-section(education)
+// #show-section(education)
 // ```
 // -----------------------------------------------------------------------------
 
+#import "section.typ": Section
 #import "style.typ"
 #import "timeframe.typ": show-timeframe
 
@@ -141,48 +142,9 @@
 //     be named or not; in either case they are appended in the order in which
 //     they were passed, with the named educations first.
 #let Education-section(title: "Education", ..educations) = {
-  return (
-    title: title,
-    unnamed-educations: educations.pos(),
-    named-educations: educations.named(),
+  return Section(
+    title,
+    show-education,
+    ..educations,
   )
-}
-
-// Turn an education section into content.
-//
-// # Parameters
-// - `education`: `dictionary`
-//     The education section to show, which should be a dictionary formatted
-//     like the one returned from `Education-section`.
-// - `date-format`: `str` | `none`
-//     The date format to use for displaying educations. See `show-education`
-//     for details.
-//
-// # Notes
-// -  If the education section's title is passed as type `str`, the title will
-//    be emboldened; otherwise it is left as-is.
-// - See notes on `show-education` for how parts of educations are formatted
-//   depending on types, etc.
-#let show-education-section(
-  education,
-  datetime-format: none,
-) = {
-  let result = none
-
-  let (title, unnamed-educations, named-educations) = education
-
-  if type(title) == str {
-    title = style.section(title)
-  }
-  result += title
-
-  let educations = named-educations.values() + unnamed-educations
-
-  result += list(
-    ..educations.map(education =>
-      show-education(education, datetime-format: datetime-format)
-    )
-  )
-
-  return block(result)
 }

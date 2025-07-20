@@ -17,10 +17,11 @@
 //
 // #let projects = Project-section(hello-world)
 //
-// #show-project-section(projects)
+// #show-section(projects)
 // ```
 // -----------------------------------------------------------------------------
 
+#import "section.typ": Section
 #import "style.typ"
 #import "timeframe.typ": show-timeframe
 
@@ -133,45 +134,9 @@
 //     named or not; in either case they are appended in the order in which they
 //     were passed, with the named projects first.
 #let Project-section(title: none, ..projects) = {
-  return (
-    title: title,
-    unnamed-projects: projects.pos(),
-    named-projects: projects.named(),
+  return Section(
+    title,
+    show-project,
+    ..projects,
   )
-}
-
-// Turn a project section into content.
-//
-// # Parameters
-// - `projects`: `dictionary`
-//     The project section to show, which should be a dictionary formatted like
-//     the one returned from `Project-section`.
-// - `datetime-format`: `str` | `none`
-//     The date format to use for displaying projects. See `show-project` for
-//     details.
-//
-// # Notes
-// -  If the project section's title is passed as type `str`, the title will be
-//    emboldened; otherwise it is left as-is.
-// - See notes on `show-project` for how parts of projects are formatted
-//   depending on types, etc.
-#let show-project-section(projects, datetime-format: none) = {
-  let result = none
-
-  let (title, unnamed-projects, named-projects) = projects
-
-  if type(title) == str {
-    title = style.section(title)
-  }
-  result += title
-
-  let projects = named-projects.values() + unnamed-projects
-
-  result += list(
-    ..projects.map(project =>
-      show-project(project, datetime-format: datetime-format)
-    ),
-  )
-
-  return block(result)
 }
