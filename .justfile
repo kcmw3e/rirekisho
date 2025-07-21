@@ -9,6 +9,7 @@ default:
 
 alias b := build
 alias t := test
+alias td := test-with-debug
 alias c := clean
 
 # TODO: Make note in documentation about these environment variables.
@@ -38,7 +39,7 @@ build: make-build-dir
 
     cp -rt $version_dir $manifest
 
-test pattern="": make-test-dir
+test pattern="" debug="false": make-test-dir
     #!/usr/bin/env fish
 
     set files (find 'test/' -type f -name '*{{pattern}}*.typ')
@@ -48,8 +49,10 @@ test pattern="": make-test-dir
             string join '/' '{{build_dir}}' (path change-extension 'pdf' $file)
         )
         echo $file
-        typst c --root . $file $output_file
+        typst c --root . $file $output_file --input 'debug={{debug}}'
     end
+
+test-with-debug pattern="": (test pattern "true")
 
 clean:
     rm -r {{build_dir}}
