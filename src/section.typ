@@ -60,11 +60,8 @@
 
   let items = named-items.values() + unnamed-items
 
-  result += list(
-    ..items.map(item =>
-      show-item(item)
-    ),
-  )
-
-  return block(result)
+  result += items.map(item =>
+      debug-block(show-item(item))
+  ).sum()
+  return debug-block(result)
 }
