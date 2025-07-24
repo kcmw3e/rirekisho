@@ -21,6 +21,7 @@
 // ```
 // -----------------------------------------------------------------------------
 
+#import "debug.typ": *
 #import "section.typ": Section
 #import "style.typ"
 #import "timeframe.typ": show-timeframe
@@ -97,7 +98,7 @@
 
   result += body
 
-  return block(result)
+  return debug-block(result)
 }
 
 

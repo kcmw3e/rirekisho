@@ -20,6 +20,7 @@
 // ```
 // -----------------------------------------------------------------------------
 
+#import "debug.typ": *
 #import "section.typ": Section
 #import "style.typ"
 #import "timeframe.typ": show-timeframe
@@ -115,7 +116,7 @@
 
   result += list(academic-content)
 
-  return block(result)
+  return debug-block(result)
 }
 
 // A convenience function to gather a list of educations together that can be

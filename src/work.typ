@@ -21,6 +21,7 @@
 // ```
 // -----------------------------------------------------------------------------
 
+#import "debug.typ": *
 #import "section.typ": Section
 #import "style.typ"
 #import "timeframe.typ": show-timeframe
@@ -100,7 +101,7 @@
   result += [#h(1fr) #style.timeframe(timeframe-content)]
   result += body
 
-  return block(result)
+  return debug-block(result)
 }
 
 // A convenience function to gather a list of work experiences together that can
