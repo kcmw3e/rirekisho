@@ -11,4 +11,5 @@ extend-ignore-re = [
   # should also be good for any "<filename>.typ" kind of pattern as long as it
   # is quoted.
   '"\w*\.typ"',
+  "'\\w*\\.typ'",
 ]
