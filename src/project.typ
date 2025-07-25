@@ -113,7 +113,7 @@
 //     `Project` such that it can be used in `show-project`. Arguments may be
 //     named or not; in either case they are appended in the order in which they
 //     were passed, with the named projects first.
-#let Project-section(title: none, ..projects) = {
+#let Project-section(title: "Projects", ..projects) = {
   return Section(
     title,
     show-project,
