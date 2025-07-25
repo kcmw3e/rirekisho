@@ -41,7 +41,7 @@
 // to content such as via `[#value]`.
 #let default-style = (
   // Styles the name of the resume-owner
-  name: (value) => { text(weight: "bold", size: 12pt, value) },
+  name: (value) => { align(center, text(weight: "bold", size: 12pt, value)) },
   // Styles element titles within sections
   element: emph,
   // Styles section titles
