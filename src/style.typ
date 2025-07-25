@@ -47,7 +47,7 @@
   // Styles section titles
   section: strong,
   // Styles timeframes
-  timeframe: strong,
+  timeframe: emph,
   // Styles locations
   location: text,
 )
