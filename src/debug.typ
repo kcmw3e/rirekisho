@@ -19,11 +19,12 @@
 // It is better to use this over set and show rules to enforce deliberate use of
 // blocks where they make sense, and so any other blocks outside of this library
 // are not affected.
-#let debug-block(content) = {
+#let debug-block(content, ..block-args) = {
   context if is-debug-enabled.get() {
     return block(
       fill: rgb(0, 0, 0, 10),
       stroke: 0.1mm + rgb(0, 0, 0, 50),
+      ..block-args,
       content,
     )
   } else {
