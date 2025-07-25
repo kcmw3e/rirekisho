@@ -13,7 +13,7 @@
 // Create a `block` with visual debugging depending of whether debug utilities
 // are enabled.
 // 
-// Since every style-able part of the resume is `block`ed, this funciton can be
+// Since every style-able part of the resume is `block`ed, this function can be
 // used instead to allow additional visual styling when debugging is enabled.
 //
 // It is better to use this over set and show rules to enforce deliberate use of
