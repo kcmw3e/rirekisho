@@ -8,9 +8,12 @@ default:
     @just --list --unsorted --justfile {{justfile()}}
 
 alias b := build
+alias i := install
 alias t := test
 alias td := test-with-debug
 alias c := clean
+
+package_name := 'rirekisho'
 
 # TODO: Make note in documentation about these environment variables.
 # The build/test dir variables can be set to change the build directory, and the
@@ -19,6 +22,10 @@ alias c := clean
 build_dir := env('RIREKISHO_BUILD_DIR', 'build')
 test_dir := build_dir/env('RIREKISHO_TEST_DIR', 'test')
 pdf_viewer := env('PDF_VIEWER', 'okular')
+
+data_dir := env('$XDG_DATA_HOME', env('HOME')/'.local/share')
+typst_package_dir := data_dir/'typst'/'packages'/'local'
+install_dir := env('RIREKISHO_INSTALL_DIR', typst_package_dir/package_name)
 
 build: make-build-dir
     #!/usr/bin/env fish
@@ -38,6 +45,15 @@ build: make-build-dir
     set -a manifest 'changelog'
 
     cp -rt $version_dir $manifest
+
+# Build and install locally (currently Linux-only).
+install: make-install-dir build
+    #!/usr/bin/env fish
+
+    set build_version (cat version)
+    set build_dir (string join '/' '{{build_dir}}' $build_version)
+
+    cp -rt '{{install_dir}}' $build_dir
 
 test pattern="" debug="false": make-test-dir
     #!/usr/bin/env fish
@@ -66,6 +82,10 @@ open-tests:
 [private]
 make-build-dir:
     @mkdir -p '{{build_dir}}/'
+
+[private]
+make-install-dir:
+    @mkdir -p '{{install_dir}}/'
 
 [private]
 make-test-dir: make-build-dir
