@@ -1,16 +1,14 @@
 [package]
 name = "rirekisho"
 version = "0.0.0"
-entrypoint = "src/rirekisho.typ"
+entrypoint = "src/lib.typ"
 authors = ["Casey Walker"]
 license = "MIT"
 description = "A library to help with procedural resume-building."
 repository = "https://github.com/kcmw3e/rirekisho"
 keywords = ["cv", "resume"]
 categories = ["cv"]
-exclude = [
-	"tests",
-]
+exclude = ["docs", "tests"]
 
 [template]
 path = "template/"
