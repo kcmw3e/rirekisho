@@ -55,7 +55,7 @@
 
   let (title, show-item, unnamed-items, named-items) = section
 
-  title = style.section(title)
+  title = debug-block(style.section(title), sticky: true)
   result += title
 
   let items = named-items.values() + unnamed-items
