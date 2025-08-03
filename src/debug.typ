@@ -28,6 +28,6 @@
       content,
     )
   } else {
-    return block(content)
+    return block(content, ..block-args)
   }
 }
