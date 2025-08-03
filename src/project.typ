@@ -98,7 +98,7 @@
 
   result += body
 
-  return debug-block(result)
+  return result
 }
 
 
