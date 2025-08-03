@@ -50,6 +50,9 @@
   timeframe: emph,
   // Styles locations
   location: text,
+  // Styles a whole header of an element. Note that this styles on top of the
+  // element, timeframe, and location styles.
+  header: text,
 )
 
 // Create a new style using the default style as a basis for missing style
@@ -100,4 +103,8 @@
 
 #let location(value) = {
   return context (style.get().location)(value)
+}
+
+#let header(value) = {
+  return context (style.get().header)(value)
 }
