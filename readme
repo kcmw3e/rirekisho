@@ -11,6 +11,14 @@ no particular reason for choosing this name besides the fact that I wanted
 something more interesting than "resume-something" as a package name and that
 I'm currently learning Japanese.)
 
+Navigating this project:
+
+- The main source for the library is in 'src/', with the primary elements of the
+  resume each having their own file within 'src/'.
+- 'version' simply contains the text of the current version number of the
+  package. This is mainly for scripting purposes (e.g. when creating the built
+  package).
+
 Related/similar projects:
     - basic-resume: https://github.com/stuxf/basic-typst-resume-template
     - min-resume: https://github.com/mayconfmelo/min-resume
