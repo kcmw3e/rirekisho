@@ -94,12 +94,15 @@
 
   let timeframe-content = show-timeframe(timeframe)
 
-  result += institution
+  let header = none
 
-  if result != none and location != none {
-    result += [ --- ]
+  header += institution
+
+  if header != none and location != none {
+    header += [ --- ]
   }
-  result += style.location(location)
+  header += style.location(location)
+  header += h(1fr) + style.timeframe(timeframe-content)
 
   let academic-content = none
   academic-content += kind + [ ] + study
@@ -112,9 +115,8 @@
     }
   }
 
-  result += [#h(1fr) #style.timeframe(timeframe-content)]
-
-  result += list(academic-content)
+  result += style.header(header)
+  result += style.body(list(academic-content))
 
   return debug-block(result)
 }
