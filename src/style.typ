@@ -31,6 +31,8 @@
 // ```
 // -----------------------------------------------------------------------------
 
+#import "debug.typ": debug-block
+
 // The default style. This should also be used as an example/template for
 // writing custom styles.
 //
@@ -52,7 +54,9 @@
   location: text,
   // Styles a whole header of an element. Note that this styles on top of the
   // element, timeframe, and location styles.
-  header: text,
+  header: (value) => {
+    context debug-block(value, spacing: text.size/2, sticky: true)
+  },
 )
 
 // Create a new style using the default style as a basis for missing style
