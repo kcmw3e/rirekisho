@@ -103,7 +103,7 @@
   header += [#h(1fr) #style.timeframe(timeframe-content)]
 
   result += style.header(header)
-  result += debug-block(body)
+  result += style.body(body)
 
   return result
 }
