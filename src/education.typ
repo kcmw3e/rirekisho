@@ -105,7 +105,7 @@
   header += h(1fr) + style.timeframe(timeframe-content)
 
   let academic-content = none
-  academic-content += kind + [ ] + study
+  academic-content += kind + sym.space + study
 
   if academic-content != none and score != none {
     academic-content += [ --- #score]
