@@ -27,9 +27,18 @@
 //   },
 // ))
 //
+// // TODO: this may need to be changed, since `style` is both the name of the
+// // module and the global state variable
 // #style.update(wacky-style)
 // ```
 // -----------------------------------------------------------------------------
+
+#import "debug.typ": debug-block
+
+// The coefficient to multiply the text size by to get block spacing for resume
+// elements. This is used for keeping the element headers closer to their
+// respective bodies for visual signaling to readers that they are together.
+#let text-size-to-block-spacing-coeff = 1/1.25
 
 // The default style. This should also be used as an example/template for
 // writing custom styles.
@@ -50,6 +59,23 @@
   timeframe: emph,
   // Styles locations
   location: text,
+  // Styles a whole header of an element. Note that this styles on top of the
+  // element, timeframe, and location styles.
+  header: (value) => {
+    context debug-block(
+      value,
+      spacing: text.size*text-size-to-block-spacing-coeff,
+      sticky: true,
+    )
+  },
+  // Styles the whole body of an element.
+  body: (value) => {
+    context debug-block(
+      value,
+      spacing: text.size*text-size-to-block-spacing-coeff,
+      inset: (left: text.size/5),
+    )
+  },
 )
 
 // Create a new style using the default style as a basis for missing style
@@ -100,4 +126,12 @@
 
 #let location(value) = {
   return context (style.get().location)(value)
+}
+
+#let header(value) = {
+  return context (style.get().header)(value)
+}
+
+#let body(value) = {
+  return context (style.get().body)(value)
 }

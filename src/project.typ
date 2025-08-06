@@ -76,29 +76,28 @@
 
   title = style.element(title)
 
-  result += title
+  let header = none
 
-  if result != none and location != none {
-    result += [ --- ]
+  header += title
+
+  if header != none and location != none {
+    header += [ --- ]
   }
 
-  result += style.location(location)
+  header += style.location(location)
 
   let timeframe-content = show-timeframe(timeframe)
 
   if timeframe-content != none {
-    result += h(1fr)
+    header += h(1fr)
   }
 
-  result += style.timeframe(timeframe-content)
+  header += style.timeframe(timeframe-content)
 
-  if body != none {
-    result += linebreak()
-  }
+  result += style.header(header)
+  result += style.body(body)
 
-  result += body
-
-  return debug-block(result)
+  return result
 }
 
 

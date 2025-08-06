@@ -84,24 +84,28 @@
   position = style.element(position)
   company = style.element(company)
 
-  result += position
+  let header = none
 
-  if result != none and company != none {
-    result += [, ]
-  }
-  result += company
+  header += position
 
-  if result != none and location != none {
-    result += [ --- ]
+  if header != none and company != none {
+    header += [, ]
   }
-  result += style.location(location)
+  header += company
+
+  if header != none and location != none {
+    header += [ --- ]
+  }
+  header += style.location(location)
 
   let timeframe-content = show-timeframe(timeframe)
 
-  result += [#h(1fr) #style.timeframe(timeframe-content)]
-  result += body
+  header += [#h(1fr) #style.timeframe(timeframe-content)]
 
-  return debug-block(result)
+  result += style.header(header)
+  result += style.body(body)
+
+  return result
 }
 
 // A convenience function to gather a list of work experiences together that can
