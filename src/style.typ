@@ -55,7 +55,7 @@
   // Styles a whole header of an element. Note that this styles on top of the
   // element, timeframe, and location styles.
   header: (value) => {
-    context debug-block(value, spacing: text.size/2, sticky: true)
+    context debug-block(value, spacing: text.size/1.25, sticky: true)
   },
 )
 
