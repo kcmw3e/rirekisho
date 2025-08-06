@@ -53,6 +53,15 @@
 // `resume` in order for them to take effect.
 #let resume-rules = state("resume-rules", default-rules)
 
+// This is a convenience function for updating the `resume-rules` state with a
+// new rules function.
+//
+// The only parameter, `new-rules`, should be a function with a compatible
+// signature to `default-rules`.
+#let update-resume-rules(new-rules) = {
+  resume-rules.update(original => { new-rules })
+}
+
 // Create a resume from the provided building blocks.
 //
 // The arguments `contacts`, `education`, `work`, and `projects` should come
