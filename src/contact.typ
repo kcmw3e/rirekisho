@@ -51,9 +51,9 @@
     value = show-value(value)
   }
 
-  name = context style.section(name)
+  name = style.section(name)
 
-  return context [#name: #value]
+  return [#name: #value]
 }
 
 // Create a phone number contact entry.
