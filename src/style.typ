@@ -29,7 +29,7 @@
 //
 // // TODO: this may need to be changed, since `style` is both the name of the
 // // module and the global state variable
-// #style.update(wacky-style)
+// #current-style.update(wacky-style)
 // ```
 // -----------------------------------------------------------------------------
 
@@ -98,40 +98,40 @@
 // contains all style parameters. It is encouraged to use
 // `new-style-from-default` for this purpose to fill any missing parameters
 // automatically.
-#let style = state("style-state", default-style)
+#let current-style = state("style-state", default-style)
 
 // Reset the current style to the default style.
 #let reset-style-to-default() = {
-  style.update(default-style)
+  current-style.update(default-style)
 }
 
 // The below functions are convenience for accessing the elements in the style
 // since it can be cumbersome to do so manually.
 
 #let name(value) = {
-  return context (style.get().name)(value)
+  return context (current-style.get().name)(value)
 }
 
 #let element(value) = {
-  return context (style.get().element)(value)
+  return context (current-style.get().element)(value)
 }
 
 #let section(value) = {
-  return context (style.get().section)(value)
+  return context (current-style.get().section)(value)
 }
 
 #let timeframe(value) = {
-  return context (style.get().timeframe)(value)
+  return context (current-style.get().timeframe)(value)
 }
 
 #let location(value) = {
-  return context (style.get().location)(value)
+  return context (current-style.get().location)(value)
 }
 
 #let header(value) = {
-  return context (style.get().header)(value)
+  return context (current-style.get().header)(value)
 }
 
 #let body(value) = {
-  return context (style.get().body)(value)
+  return context (current-style.get().body)(value)
 }
