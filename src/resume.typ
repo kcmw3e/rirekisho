@@ -70,7 +70,16 @@
 //
 // If horizontal lines are desired between sections, the `lines` argument may be
 // set to `true`.
-#let resume(author, contacts, education, work, projects, body, lines: false) = {
+#let resume(
+  author,
+  contacts,
+  education,
+  work,
+  projects,
+  skills,
+  body,
+  lines: false,
+) = {
   let separator = if lines {line(length: 100%, stroke: 1pt)} else {none}
 
   let everything = (
@@ -79,7 +88,8 @@
   + (
       show-section(education),
       show-section(work),
-      show-section(projects)
+      show-section(projects),
+      show-section(skills),
     ).intersperse(separator).sum()
   + body
   )
