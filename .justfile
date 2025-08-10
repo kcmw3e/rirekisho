@@ -40,7 +40,6 @@ build: make-build-dir
     set -a manifest 'license'
     set -a manifest 'typst.toml'
     set -a manifest 'src/'
-    set -a manifest 'docs/'
     set -a manifest 'template'
     set -a manifest 'changelog'
 
