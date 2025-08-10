@@ -1,4 +1,4 @@
-// This is the common way Rirekisho handles timeframes throughout resumes.
+// This is the common way Resumania handles timeframes throughout resumes.
 //
 // Here is a usage example:
 // ```typst

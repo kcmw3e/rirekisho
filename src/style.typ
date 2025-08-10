@@ -1,4 +1,4 @@
-// These are the Rirekisho styling functions.
+// These are the Resumania styling functions.
 //
 // Generally, these are meant to be kind of used like Typst's built-in `show`
 // functions. In essence, there are a bunch of `state` variables in this module

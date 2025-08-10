@@ -1,4 +1,4 @@
-// This is the main entry into the Rirekisho resume builder.
+// This is the main entry into the Resumania resume builder.
 //
 // Along with the main `resume` template function, there is also a `state`
 // provided that can be used to change/alter/add other set and show rules to the

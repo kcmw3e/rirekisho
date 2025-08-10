@@ -1,4 +1,4 @@
-// These are the Rirekisho data structures and functions for organizing and
+// These are the Resumania data structures and functions for organizing and
 // creating sections of a resume.
 //
 // This is mostly meant for internal use, but it may also be useful for creating

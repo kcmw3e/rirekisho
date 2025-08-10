@@ -1,4 +1,4 @@
-// These are the Rirekisho data structures and functions for organizing and
+// These are the Resumania data structures and functions for organizing and
 // creating sections of education for a resume, such as degrees earned from
 // universities or certifications.
 //

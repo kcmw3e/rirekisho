@@ -1,11 +1,11 @@
 [package]
-name = "rirekisho"
+name = "resumania"
 version = "0.0.0"
 entrypoint = "src/lib.typ"
 authors = ["Casey Walker"]
 license = "MIT"
 description = "A library to help with procedural resume-building."
-repository = "https://github.com/kcmw3e/rirekisho"
+repository = "https://github.com/kcmw3e/resumania"
 keywords = ["cv", "resume"]
 categories = ["cv"]
 exclude = ["docs", "tests"]

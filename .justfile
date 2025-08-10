@@ -13,19 +13,19 @@ alias t := test
 alias td := test-with-debug
 alias c := clean
 
-package_name := 'rirekisho'
+package_name := 'resumania'
 
 # TODO: Make note in documentation about these environment variables.
 # The build/test dir variables can be set to change the build directory, and the
 # PDF viewer variable to change what program is used for opening PDFs.
 
-build_dir := env('RIREKISHO_BUILD_DIR', 'build')
-test_dir := build_dir/env('RIREKISHO_TEST_DIR', 'test')
+build_dir := env('RESUMANIA_BUILD_DIR', 'build')
+test_dir := build_dir/env('RESUMANIA_TEST_DIR', 'test')
 pdf_viewer := env('PDF_VIEWER', 'okular')
 
 data_dir := env('$XDG_DATA_HOME', env('HOME')/'.local/share')
 typst_package_dir := data_dir/'typst'/'packages'/'local'
-install_dir := env('RIREKISHO_INSTALL_DIR', typst_package_dir/package_name)
+install_dir := env('RESUMANIA_INSTALL_DIR', typst_package_dir/package_name)
 
 build: make-build-dir
     #!/usr/bin/env fish
