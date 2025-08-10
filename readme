@@ -18,6 +18,10 @@ Navigating this project:
 - 'version' simply contains the text of the current version number of the
   package. This is mainly for scripting purposes (e.g. when creating the built
   package).
+- Tests are located in 'test/', with each file acting as a standalone document
+  to assist with visually debugging/testing changes to the package. They serve
+  more as examples and manual/visual checks than actual pass/fail kind of test
+  for now.
 
 Related/similar projects:
     - basic-resume: https://github.com/stuxf/basic-typst-resume-template
