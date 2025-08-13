@@ -27,12 +27,12 @@ data_dir := env('$XDG_DATA_HOME', env('HOME')/'.local/share')
 typst_package_dir := data_dir/'typst'/'packages'/'local'
 install_dir := env('RESUMANIA_INSTALL_DIR', typst_package_dir/package_name)
 
+version := `cat version`
+
 build: make-build-dir
     #!/usr/bin/env fish
 
-    set build_version (cat version)
-
-    set version_dir (string join '/' '{{build_dir}}' $build_version)
+    set version_dir (string join '/' '{{build_dir}}' '{{version}}')
     mkdir -p $version_dir
 
     # TODO: find a better way of defining the manifest
@@ -49,8 +49,7 @@ build: make-build-dir
 install: make-install-dir build
     #!/usr/bin/env fish
 
-    set build_version (cat version)
-    set build_dir (string join '/' '{{build_dir}}' $build_version)
+    set build_dir (string join '/' '{{build_dir}}' '{{version}}')
 
     cp -rt '{{install_dir}}' $build_dir
 
