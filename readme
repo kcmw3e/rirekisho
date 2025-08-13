@@ -19,6 +19,8 @@ Navigating this project:
   to assist with visually debugging/testing changes to the package. They serve
   more as examples and manual/visual checks than actual pass/fail kind of test
   for now.
+- The 'template/' directory contains a template that Typst can use to generate a
+  new project from.
 
 Related/similar projects:
     - basic-resume: https://github.com/stuxf/basic-typst-resume-template

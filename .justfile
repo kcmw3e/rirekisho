@@ -38,7 +38,7 @@ build: make-package-dir
     set -a manifest 'license'
     set -a manifest 'typst.toml'
     set -a manifest 'src/'
-    set -a manifest 'template'
+    set -a manifest 'template/'
     set -a manifest 'changelog'
 
     cp -rt '{{package_dir}}' $manifest
