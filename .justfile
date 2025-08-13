@@ -65,6 +65,12 @@ install: make-install-dir build
 
     cp -rt '{{install_dir}}' '{{package_dir}}'
 
+check-package: build
+    #!/usr/bin/env fish
+
+    cd '{{package_dir}}'
+    typst-package-check check
+
 test pattern="" debug="false": make-test-dir
     #!/usr/bin/env fish
 
