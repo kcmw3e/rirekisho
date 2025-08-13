@@ -34,8 +34,19 @@ build: make-package-dir
     #!/usr/bin/env fish
 
     # TODO: find a better way of defining the manifest
+
+    # The readme and license files have to be capitalized to satisfy Typst's
+    # package checker, so they are copied to the packaging directory under the
+    # same names just with full capitalization.
     set -a manifest 'readme'
     set -a manifest 'license'
+
+    for file in $manifest
+        set upper_file (string upper $file)
+        cp $file (string join '/' '{{package_dir}}' $upper_file)
+    end
+
+    set -e manifest
     set -a manifest 'typst.toml'
     set -a manifest 'src/'
     set -a manifest 'template/'
