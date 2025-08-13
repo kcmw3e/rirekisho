@@ -15,11 +15,14 @@ alias c := clean
 
 package_name := 'resumania'
 
+version := `cat version`
+
 # TODO: Make note in documentation about these environment variables.
 # The build/test dir variables can be set to change the build directory, and the
 # PDF viewer variable to change what program is used for opening PDFs.
 
 build_dir := env('RESUMANIA_BUILD_DIR', 'build')
+package_dir := build_dir/'local'/package_name/version
 test_dir := build_dir/env('RESUMANIA_TEST_DIR', 'test')
 pdf_viewer := env('PDF_VIEWER', 'okular')
 
@@ -27,13 +30,8 @@ data_dir := env('$XDG_DATA_HOME', env('HOME')/'.local/share')
 typst_package_dir := data_dir/'typst'/'packages'/'local'
 install_dir := env('RESUMANIA_INSTALL_DIR', typst_package_dir/package_name)
 
-version := `cat version`
-
-build: make-build-dir
+build: make-package-dir
     #!/usr/bin/env fish
-
-    set version_dir (string join '/' '{{build_dir}}' '{{version}}')
-    mkdir -p $version_dir
 
     # TODO: find a better way of defining the manifest
     set -a manifest 'readme'
@@ -43,15 +41,13 @@ build: make-build-dir
     set -a manifest 'template'
     set -a manifest 'changelog'
 
-    cp -rt $version_dir $manifest
+    cp -rt '{{package_dir}}' $manifest
 
 # Build and install locally (currently Linux-only).
 install: make-install-dir build
     #!/usr/bin/env fish
 
-    set build_dir (string join '/' '{{build_dir}}' '{{version}}')
-
-    cp -rt '{{install_dir}}' $build_dir
+    cp -rt '{{install_dir}}' '{{package_dir}}'
 
 test pattern="" debug="false": make-test-dir
     #!/usr/bin/env fish
@@ -84,6 +80,10 @@ make-build-dir:
 [private]
 make-install-dir:
     @mkdir -p '{{install_dir}}/'
+
+[private]
+make-package-dir: make-build-dir
+    @mkdir -p '{{package_dir}}/'
 
 [private]
 make-test-dir: make-build-dir
