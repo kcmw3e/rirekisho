@@ -43,6 +43,11 @@ build: make-package-dir
 
     cp -rt '{{package_dir}}' $manifest
 
+    typst c 'template/main.typ' -                                              \
+        --package-path '{{build_dir}}'                                         \
+        -f png --pages 1 --ppi 250                                             \
+    | oxipng -sq -o max - --out '{{package_dir}}'/'thumbnail.png'
+
 # Build and install locally (currently Linux-only).
 install: make-install-dir build
     #!/usr/bin/env fish
