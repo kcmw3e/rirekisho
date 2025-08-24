@@ -37,7 +37,7 @@
 )
 
 #let work = Work-section(
-  Work-experience(
+  Work(
     company: "Floating Groceries",
     location: "Sparkville, Fairyland",
     position: "Shelf Stocker",
@@ -51,7 +51,7 @@
     - Counted what herbs and apparatuses we had in stock
     - Made sure baubles and jewelery were cleaned weekly
   ],
-  Work-experience(
+  Work(
     company: "Skyward Ink.",
     location: "Floating Lands",
     position: "Herbalist",
@@ -67,7 +67,7 @@
     - Kept a journal of recipes (I was in R&D as well), and actively
         participated in creating new substances for people to test out.
   ],
-  Work-experience(
+  Work(
     company: "The Royal Mage's Society",
     location: "The World",
     position: "Chief Healer and Artifacts Curator",

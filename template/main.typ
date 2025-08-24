@@ -31,7 +31,7 @@
 )
 
 #let work = Work-section(
-  Work-experience(
+  Work(
     company: "Some Company",
     location: "Anywhere",
     position: "Mechanical Designer",
@@ -46,7 +46,7 @@
     - Worked with customers to generate specifications and requirements for the
         aircraft and its features.
   ],
-  Work-experience(
+  Work(
     company: "A Different Company",
     location: "Somewhere Else",
     position: "Mechanical Engineer Intern",

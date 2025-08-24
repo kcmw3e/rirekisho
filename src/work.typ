@@ -3,7 +3,7 @@
 //
 // Here is a usage example:
 // ```typst
-// #let lemonade-stand = Work-experience(
+// #let lemonade-stand = Work(
 //   company:  "Lemonade Stand LLC",
 //   location: "Sidewalk of 5th St.",
 //   position: "Owner",
@@ -45,7 +45,7 @@
 //     can simply be a bulleted list of information describing what work was
 //     performed, or it may be any content that satisfies describing the work
 //     experience.
-#let Work-experience(
+#let Work(
   company: none,
   location: none,
   position: none,
@@ -73,13 +73,13 @@
 // will be right-aligned.
 //
 // # Parameters
-// - `experience`: `dictionary`
+// - `work`: `dictionary`
 //     The experience to show; it should be a dictionary formatted like the one
-//     returned from `Work-experience`.
-#let show-work-experience(experience) = {
+//     returned from `Work`.
+#let show-work(work) = {
   let result = none
 
-  let (company, location, position, timeframe, body) = experience
+  let (company, location, position, timeframe, body) = work
 
   position = style.element(position)
   company = style.element(company)
@@ -114,15 +114,15 @@
 // # Parameters
 // - `title`: `str` | `content` | `none`
 //     The title to display for the work section.
-// - `experiences`: `arguments`
-//     Experiences should be dictionaries formatted like the ones returned from
-//     `Work-experience` such that it can be used in `show-work-experience`.
-//     Arguments may be named or not; in either case they are appended in the
-//     order in which they were passed, with the named experiences first.
-#let Work-section(title: "Work Experience", ..experiences) = {
+// - `works`: `arguments`
+//     These should be dictionaries formatted like the ones returned from `Work`
+//     such that it can be used in `show-work`. Arguments may be named or not;
+//     in either case they are appended in the order in which they were passed,
+//     with the named experiences first.
+#let Work-section(title: "Work Experience", ..works) = {
   return Section(
     title,
-    show-work-experience,
-    ..experiences,
+    show-work,
+    ..works,
   )
 }
