@@ -26,7 +26,22 @@ package_dir := build_dir/'local'/package_name/version
 test_dir := build_dir/env('RESUMANIA_TEST_DIR', 'test')
 pdf_viewer := env('PDF_VIEWER', 'okular')
 
-data_dir := env('$XDG_DATA_HOME', env('HOME')/'.local/share')
+data_dir := if os() == "linux" {
+    env('$XDG_DATA_HOME', env('HOME')/'.local/share')
+} else if os() == "macos" {
+    env('HOME')/'Library'/'Application Support'
+} else if os() == 'windows' {
+    '%APPDATA%'
+} else {
+    error(
+        '''
+            Unsupported operating system for installation. If you just want to
+            build or do something other than install, modify this file by
+            changing this branch to the installation path you want.
+        '''
+    )
+}
+
 typst_package_dir := data_dir/'typst'/'packages'/'local'
 install_dir := env('RESUMANIA_INSTALL_DIR', typst_package_dir/package_name)
 
