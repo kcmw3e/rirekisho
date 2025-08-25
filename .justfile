@@ -104,7 +104,7 @@ test-with-debug pattern="": (test pattern "true")
 clean:
     rm -r {{build_dir}}
 
-open-tests:
+open-tests: test
     #!/usr/bin/env fish
 
     set files (find '{{test_dir}}' -type f -name '*.pdf')
