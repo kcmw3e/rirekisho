@@ -1,10 +1,10 @@
 #import "@preview/resumania:1.0.0": *
 
-#let author = "John Doe"
+#let author = "Your Name"
 
 #let contacts = Contact-section(
   phone: Phone("+0 (123) 555-0123"),
-  email: Email("john.doe@example.com"),
+  email: Email("your.name@example.com"),
   linkedin: Link("LinkedIn", "example", "https://linkedin.com"),
   github: Link("GitHub", "example", "https://github.com")
 )
