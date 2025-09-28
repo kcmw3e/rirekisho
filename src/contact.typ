@@ -63,7 +63,7 @@
 // a `"tel:"` link will be added to the resulting content.
 #let Phone(number) = {
   return Contact(
-    "Phone",
+    [Phone],
     number,
     show-value: (number) => {
       link("tel:" + number)
@@ -78,7 +78,7 @@
 // `"mailto:"` link will be added to the resulting content.
 #let Email(email) = {
   return Contact(
-    "Email",
+    [Email],
     email,
     show-value: (email) => {
       link("mailto:" + email)
