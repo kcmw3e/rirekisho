@@ -13,7 +13,7 @@ alias t := test
 alias td := test-with-debug
 alias c := clean
 
-package_name := 'resumania'
+package-name := 'resumania'
 
 version := `cat version`
 
@@ -21,12 +21,12 @@ version := `cat version`
 # The build/test dir variables can be set to change the build directory, and the
 # PDF viewer variable to change what program is used for opening PDFs.
 
-build_dir := env('RESUMANIA_BUILD_DIR', 'build')
-package_dir := build_dir/'preview'/package_name/version
-test_dir := build_dir/env('RESUMANIA_TEST_DIR', 'test')
-pdf_viewer := env('PDF_VIEWER', 'okular')
+build-dir := env('RESUMANIA_BUILD_DIR', 'build')
+package-dir := build-dir/'preview'/package-name/version
+test-dir := build-dir/env('RESUMANIA_TEST_DIR', 'test')
+pdf-viewer := env('PDF_VIEWER', 'okular')
 
-data_dir := if os() == "linux" {
+data-dir := if os() == "linux" {
     env('$XDG_DATA_HOME', env('HOME')/'.local/share')
 } else if os() == "macos" {
     env('HOME')/'Library'/'Application Support'
@@ -42,8 +42,8 @@ data_dir := if os() == "linux" {
     )
 }
 
-typst_package_dir := data_dir/'typst'/'packages'/'local'
-install_dir := env('RESUMANIA_INSTALL_DIR', typst_package_dir/package_name)
+typst-package-dir := data-dir/'typst'/'packages'/'local'
+install-dir := env('RESUMANIA_INSTALL_DIR', typst-package-dir/package-name)
 
 build: make-package-dir
     #!/usr/bin/env fish
@@ -58,7 +58,7 @@ build: make-package-dir
 
     for file in $manifest
         set upper_file (string upper $file)
-        cp $file (string join '/' '{{package_dir}}' $upper_file)
+        cp $file (string join '/' '{{package-dir}}' $upper_file)
     end
 
     set -e manifest
@@ -67,23 +67,23 @@ build: make-package-dir
     set -a manifest 'template/'
     set -a manifest 'changelog'
 
-    cp -rt '{{package_dir}}' $manifest
+    cp -rt '{{package-dir}}' $manifest
 
     typst c 'template/main.typ' -                                              \
-        --package-path '{{build_dir}}'                                         \
+        --package-path '{{build-dir}}'                                         \
         -f png --pages 1 --ppi 250                                             \
-    | oxipng -sq -o max - --out '{{package_dir}}'/'thumbnail.png'
+    | oxipng -sq -o max - --out '{{package-dir}}'/'thumbnail.png'
 
 # Build and install locally (currently Linux-only).
 install: make-install-dir build
     #!/usr/bin/env fish
 
-    cp -rt '{{install_dir}}' '{{package_dir}}'
+    cp -rt '{{install-dir}}' '{{package-dir}}'
 
 check-package: build
     #!/usr/bin/env fish
 
-    cd '{{package_dir}}'
+    cd '{{package-dir}}'
     typst-package-check check
 
 test pattern="" debug="false": make-test-dir
@@ -93,7 +93,7 @@ test pattern="" debug="false": make-test-dir
 
     for file in $files
         set output_file (
-            string join '/' '{{build_dir}}' (path change-extension 'pdf' $file)
+            string join '/' '{{build-dir}}' (path change-extension 'pdf' $file)
         )
         echo $file
         typst c --root . $file $output_file --input 'debug={{debug}}'
@@ -102,26 +102,26 @@ test pattern="" debug="false": make-test-dir
 test-with-debug pattern="": (test pattern "true")
 
 clean:
-    rm -r {{build_dir}}
+    rm -r {{build-dir}}
 
 open-tests: test
     #!/usr/bin/env fish
 
-    set files (find '{{test_dir}}' -type f -name '*.pdf')
-    '{{pdf_viewer}}' $files &>/dev/null &
+    set files (find '{{test-dir}}' -type f -name '*.pdf')
+    '{{pdf-viewer}}' $files &>/dev/null &
 
 [private]
 make-build-dir:
-    @mkdir -p '{{build_dir}}/'
+    @mkdir -p '{{build-dir}}/'
 
 [private]
 make-install-dir:
-    @mkdir -p '{{install_dir}}/'
+    @mkdir -p '{{install-dir}}/'
 
 [private]
 make-package-dir: make-build-dir
-    @mkdir -p '{{package_dir}}/'
+    @mkdir -p '{{package-dir}}/'
 
 [private]
 make-test-dir: make-build-dir
-    @mkdir -p '{{test_dir}}/'
+    @mkdir -p '{{test-dir}}/'
