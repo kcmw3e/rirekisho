@@ -6,7 +6,7 @@
 
 #import "/src/lib.typ": *
 
-#let author = "Man of Many Names"
+#let author = "Person of Many Names"
 
 #let contacts = Contact-section(
   phone: Phone("+0 (123) 555-0100"),
