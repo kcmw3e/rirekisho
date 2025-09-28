@@ -21,6 +21,8 @@ Navigating this project:
   for now.
 - The 'template/' directory contains a template that Typst can use to generate a
   new project from.
+- The 'assets/' directory contains extra files that will be included in the
+  built package, such as a 'README.md'.
 
 Related/similar projects:
     - basic-resume: https://github.com/stuxf/basic-typst-resume-template
