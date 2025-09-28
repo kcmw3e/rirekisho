@@ -3,7 +3,7 @@
 //
 // Here is a usage example:
 // ```typst
-// #let lemonade-stand = Work(
+// #let lemonade-stand = work(
 //   company:  "Lemonade Stand LLC",
 //   location: "Sidewalk of 5th St.",
 //   position: "Owner",
@@ -15,14 +15,14 @@
 // - I ran a lemonade stand in my front yard for people in my neighborhood.
 // ]
 //
-// #let work = Work-section(lemonade-stand)
+// #let works = work-section(lemonade-stand)
 //
-// #show-section(work)
+// #show-section(works)
 // ```
 // -----------------------------------------------------------------------------
 
 #import "debug.typ": *
-#import "section.typ": Section
+#import "section.typ": section
 #import "style.typ"
 #import "timeframe.typ": show-timeframe
 
@@ -45,7 +45,7 @@
 //     can simply be a bulleted list of information describing what work was
 //     performed, or it may be any content that satisfies describing the work
 //     experience.
-#let Work(
+#let work(
   company: none,
   location: none,
   position: none,
@@ -75,7 +75,7 @@
 // # Parameters
 // - `work`: `dictionary`
 //     The experience to show; it should be a dictionary formatted like the one
-//     returned from `Work`.
+//     returned from `work`.
 #let show-work(work) = {
   let result = none
 
@@ -115,12 +115,12 @@
 // - `title`: `str` | `content` | `none`
 //     The title to display for the work section.
 // - `works`: `arguments`
-//     These should be dictionaries formatted like the ones returned from `Work`
+//     These should be dictionaries formatted like the ones returned from `work`
 //     such that it can be used in `show-work`. Arguments may be named or not;
 //     in either case they are appended in the order in which they were passed,
 //     with the named experiences first.
-#let Work-section(title: [Work Experience], ..works) = {
-  return Section(
+#let work-section(title: [Work Experience], ..works) = {
+  return section(
     title,
     show-work,
     ..works,

@@ -8,7 +8,7 @@
 // ```typst
 // #let show-disco(shape, ..) = { text(fill: gray, shape) }
 
-// #let disco-party = Section(
+// #let disco-party = section(
 //   "Disco!",
 //   show-disco,
 //   "orb",
@@ -35,7 +35,7 @@
 //     The items that belong as part of the section. These will be passed to
 //     `show-item` when `show-section` is called on the return object of this
 //     fucniton.
-#let Section(title, show-item, ..items) = {
+#let section(title, show-item, ..items) = {
   return (
     title: title,
     show-item: show-item,
@@ -49,7 +49,7 @@
 // # Parameters
 // - `section`: `dictionary`
 //     The resume section to show, which should be a dictionary formatted like
-//     the one returned from `Section`.
+//     the one returned from `section`.
 #let show-section(section) = {
   let result = none
 

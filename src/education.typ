@@ -4,7 +4,7 @@
 //
 // Here is a usage example:
 // ```typst
-// #let free-degree = Education(
+// #let free-degree = education(
 //   institution: "Anonymous University",
 //   location: "Nowhere",
 //   kind: "PhD",
@@ -14,14 +14,14 @@
 //   scale: $infinity$,
 // )
 //
-// #let education = Education-section(free-degree)
+// #let educations = education-section(free-degree)
 //
-// #show-section(education)
+// #show-section(educations)
 // ```
 // -----------------------------------------------------------------------------
 
 #import "debug.typ": *
-#import "section.typ": Section
+#import "section.typ": section
 #import "style.typ"
 #import "timeframe.typ": show-timeframe
 
@@ -48,7 +48,7 @@
 // - `scale`: `str` | `content` | `float` | `none`
 //     The scale with which to put the `score` in perspective. Often, for GPAs,
 //     this is `4.0`.
-#let Education(
+#let education(
   institution: none,
   location: none,
   kind: none,
@@ -80,7 +80,7 @@
 // # Parameters
 // - `education`: `dictionary`
 //     The education to show, which should be formatted like the one returned
-//     from `Education`.
+//     from `education`.
 //
 // # Notes
 // - If no score is provided, the scale will not be displayed even if it is
@@ -129,11 +129,11 @@
 //     The title to display for the education section.
 // - `educations`: `arguments`
 //     Educations should be dictionaries formatted like the ones returned from
-//     `Education` such that it can be used in `show-education`. Arguments may
+//     `education` such that it can be used in `show-education`. Arguments may
 //     be named or not; in either case they are appended in the order in which
 //     they were passed, with the named educations first.
-#let Education-section(title: [Education], ..educations) = {
-  return Section(
+#let education-section(title: [Education], ..educations) = {
+  return section(
     title,
     show-education,
     ..educations,

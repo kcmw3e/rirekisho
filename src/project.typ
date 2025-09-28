@@ -3,7 +3,7 @@
 //
 // Here is a usage example:
 // ```typst
-// #let hello-world = Project(
+// #let hello-world = project(
 //   title: "Hello World",
 //   location: "Earth",
 //   timeframe: (
@@ -15,14 +15,14 @@
 //     whole world.
 // ]
 //
-// #let projects = Project-section(hello-world)
+// #let projects = project-section(hello-world)
 //
 // #show-section(projects)
 // ```
 // -----------------------------------------------------------------------------
 
 #import "debug.typ": *
-#import "section.typ": Section
+#import "section.typ": section
 #import "style.typ"
 #import "timeframe.typ": show-timeframe
 
@@ -49,7 +49,7 @@
 // - If the project was completed during a standard period of time (e.g. a
 //   given semester of school), `end` can be left as `none` while passing
 //   `start` as `content` or `str` (for example, `"Spring 2042"`).
-#let Project(title: none, location: none, timeframe: none,  body) = {
+#let project(title: none, location: none, timeframe: none,  body) = {
   return (title: title, location: location, timeframe: timeframe, body: body)
 }
 
@@ -68,7 +68,7 @@
 // # Parameters
 // - `project`: `dictionary`
 //     The project to show; it should be a dictionary formatted like the one
-//     returned from `Project`.
+//     returned from `project`.
 #let show-project(project) = {
   let result = none
 
@@ -109,11 +109,11 @@
 //     The title to display for the project section.
 // - `projects`: `arguments`
 //     Projects should be dictionaries formatted like the ones returned from
-//     `Project` such that it can be used in `show-project`. Arguments may be
+//     `project` such that it can be used in `show-project`. Arguments may be
 //     named or not; in either case they are appended in the order in which they
 //     were passed, with the named projects first.
-#let Project-section(title: [Projects], ..projects) = {
-  return Section(
+#let project-section(title: [Projects], ..projects) = {
+  return section(
     title,
     show-project,
     ..projects,

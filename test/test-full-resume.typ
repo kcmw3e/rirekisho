@@ -8,15 +8,15 @@
 
 #let author = "Person of Many Names"
 
-#let contacts = Contact-section(
-  phone: Phone("+0 (123) 555-0100"),
-  email: Email("many.names@example.com"),
-  linkedin: Link("LinkedIn", "example", "https://linkedin.com"),
-  github: Link("GitHub", "example", "https://github.com")
+#let contacts = contact-section(
+  phone: phone("+0 (123) 555-0100"),
+  email: email("many.names@example.com"),
+  linkedin: url-link("LinkedIn", "example", "https://linkedin.com"),
+  github: url-link("GitHub", "example", "https://github.com")
 )
 
-#let education = Education-section(
-  masters: Education(
+#let education = education-section(
+  masters: education(
     institution: "Magic School",
     location: "Fairyland",
     kind: "W.I.Z.A.R.D.",
@@ -25,7 +25,7 @@
     score: [0.9],
     scale: [1.0],
   ),
-  backelors: Education(
+  backelors: education(
     institution: "Castle",
     location: "Isles of Dust",
     kind: "M.A.G.E.",
@@ -36,8 +36,8 @@
   ),
 )
 
-#let work = Work-section(
-  Work(
+#let works = work-section(
+  work(
     company: "Floating Groceries",
     location: "Sparkville, Fairyland",
     position: "Shelf Stocker",
@@ -51,7 +51,7 @@
     - Counted what herbs and apparatuses we had in stock
     - Made sure baubles and jewelery were cleaned weekly
   ],
-  Work(
+  work(
     company: "Skyward Ink.",
     location: "Floating Lands",
     position: "Herbalist",
@@ -67,7 +67,7 @@
     - Kept a journal of recipes (I was in R&D as well), and actively
         participated in creating new substances for people to test out.
   ],
-  Work(
+  work(
     company: "The Royal Mage's Society",
     location: "The World",
     position: "Chief Healer and Artifacts Curator",
@@ -85,14 +85,14 @@
   ],
 )
 
-#let projects = Project-section(
-  Project(title: "Automatic Spellmaker", timeframe: "The Year of Spirits")[
+#let projects = project-section(
+  project(title: "Automatic Spellmaker", timeframe: "The Year of Spirits")[
     In this project, I created an automatic spell making apparatus, inspired by
       the spirits that arose in The Year of Spirits.
     - The apparatus could make 50 spells every day.
     - It consumed 5 Tubes of mana for every spell created.
   ],
-  Project(
+  project(
     title: "Self-writing Paper",
     timeframe: datetime(year: 0038, month: 5, day: 1),
   )[
@@ -102,9 +102,9 @@
   ],
 )
 
-#let skills = Skills-section(
-  Skillset("Spells", "Spell Crafting", "Spell Casting"),
-  Skillset("Wands", "Making Wands", "Analyzing Wands", "Sorting Wands"),
+#let skills = skills-section(
+  skillset("Spells", "Spell Crafting", "Spell Casting"),
+  skillset("Wands", "Making Wands", "Analyzing Wands", "Sorting Wands"),
 )
 
-#show: resume.with(author, contacts, education, work, projects, skills)
+#show: resume.with(author, contacts, education, works, projects, skills)
