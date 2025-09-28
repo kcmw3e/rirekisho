@@ -18,7 +18,7 @@
 
 // Create a set of skills belonging to some category.
 //
-// # Parameters
+// = Parameters
 // - `category`: `str` | `content`
 //     The category that describes the set of skills.
 // - `skills`: `str` | `content`
@@ -37,7 +37,7 @@
 // The skillset will be formatted by the category, followed by a colon, followed
 // by a comma-separated list of the skills in the set.
 //
-// # Parameters
+// = Parameters
 // - `skillset`: `dictionary`
 //     The skillset to show; it should be a dictionary formatted like the one
 //     returned from `skillset`.
@@ -57,7 +57,7 @@
 // A convenience function to gather a list of skillsets together that can be
 // displayed as a section in the resume.
 //
-// # Parameters
+// = Parameters
 // - `title`: `str` | `content` | `none`
 //     The title to display for the skills section.
 // - `skillsets`: `arguments`

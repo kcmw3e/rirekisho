@@ -30,7 +30,7 @@
 // a phone number or email address (which are both provided as part of this
 // module).
 //
-// # Parameters
+// = Parameters
 // - `name`: `str` | `content`
 //     The name of the contact, which will be displayed next to the contact.
 // - `value`: `any`

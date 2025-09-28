@@ -24,7 +24,7 @@
 
 // A section of the resume.
 //
-// # Parameters
+// = Parameters
 // - `title`: `any`
 //     The title of the section.
 // - `show-item`: `function`
@@ -46,7 +46,7 @@
 
 // Turn a section into content.
 //
-// # Parameters
+// = Parameters
 // - `section`: `dictionary`
 //     The resume section to show, which should be a dictionary formatted like
 //     the one returned from `section`.

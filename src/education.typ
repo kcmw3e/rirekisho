@@ -28,7 +28,7 @@
 // Define a course of study, such as a degree earned at a university or a
 // certification, etc.
 //
-// # Parameters
+// = Parameters
 // - `institution`: `str` | `content` | `none`
 //     The institution which bestowed the degree of study.
 // - `location`: `str` | `content` | `none`
@@ -71,18 +71,21 @@
 // Turn an education into content.
 //
 // The education will be formatted as follows:
-//   [`institution`]{ --- }[`location`]
-//   [`kind`] [`study`]{ --- }[`score`]{/}[`scale`] ... [`timeframe`]
+//
+//   `institution`{ --- }`location`
+//
+//   `kind` `study`{ --- }`score`{/}`scale` ... `timeframe`
+//
 // Where anything in "{}" will be inserted depending on whether both of the
 // fields adjacent to it exist. Everything left of the "..." will be
 // left-aligned, and everything right of it will be right-aligned.
 //
-// # Parameters
+// = Parameters
 // - `education`: `dictionary`
 //     The education to show, which should be formatted like the one returned
 //     from `education`.
 //
-// # Notes
+// = Notes
 // - If no score is provided, the scale will not be displayed even if it is
 //   provided.
 #let show-education(education) = {
@@ -124,7 +127,7 @@
 // A convenience function to gather a list of educations together that can be
 // displayed as a section in the resume.
 //
-// # Parameters
+// = Parameters
 // - `title`: `str` | `content` | `none`
 //     The title to display for the education section.
 // - `educations`: `arguments`

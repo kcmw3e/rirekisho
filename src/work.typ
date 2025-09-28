@@ -28,7 +28,7 @@
 
 // Define a work experience.
 //
-// # Parameters
+// = Parameters
 // - `company`: `str` | `content` | `none`
 //     The company where the work was performed.
 // - `location`: `str` | `content` | `none`
@@ -64,15 +64,18 @@
 // Turn a work experience into content.
 //
 // The work experience will be formatted as follows:
-//   [`position`]{, }[`company`]{ --- }[`location`] ... [`start`]{--}[`end`]
-//   [body]
+//
+//   `position`{, }`company`{ --- }`location` ... `start`{--}`end`
+//
+//   `body`
+//
 // Where anything in "{}" will be inserted depending on whether both of the
 // fields adjacent to it exist. The exception is that the en-dash between the
 // start and end dates will be inserted even if only one of the fields exist.
 // Everything left of the "..." will be left-aligned, and everything right of it
 // will be right-aligned.
 //
-// # Parameters
+// = Parameters
 // - `work`: `dictionary`
 //     The experience to show; it should be a dictionary formatted like the one
 //     returned from `work`.
@@ -111,7 +114,7 @@
 // A convenience function to gather a list of work experiences together that can
 // be displayed as a section in the resume.
 //
-// # Parameters
+// = Parameters
 // - `title`: `str` | `content` | `none`
 //     The title to display for the work section.
 // - `works`: `arguments`

@@ -24,7 +24,7 @@
 
 // Return content of the provided datetime.
 //
-// # Parameters
+// = Parameters
 // - `datetime`: `datetime`
 //     The object to format.
 #let show-datetime(datetime) = {
@@ -39,7 +39,7 @@
 // `none` then `none` will be returned (note this is different from empty
 // content).
 //
-// # Parameters
+// = Parameters
 // - `start`: `str` | `content` | `datetime` | `none`
 //     The start of the timeframe.
 // - `end`: `str` | `content` | `datetime` | `none`
@@ -68,12 +68,12 @@
 
 // Convert a timeframe between two dates into content.
 //
-// # Parameters
+// = Parameters
 // - `timeframe`: `datetime` | `dictionary` | `array` | `any`
 //     The timeframe to convert into content. See notes below for more how the
 //     parameter can be formatted and how it's handled.
 //
-// # Notes
+// = Notes
 // - The two forms a timeframe can take:
 //     1. A non-container type, which may be a `datetime` or any other type that
 //        isn't a container (e.g. an array or dictionary). If the timeframe is a

@@ -28,7 +28,7 @@
 
 // Define a project.
 //
-// # Parameters
+// = Parameters
 // - `title`: `str` | `content` | `none`
 //     The title of the project.
 // - `location`: `str` | `content` | `none`
@@ -45,7 +45,7 @@
 //     typically a bulleted list of information about the project, but it may
 //     also be any content that adequately describes the project.
 //
-// # Notes
+// = Notes
 // - If the project was completed during a standard period of time (e.g. a
 //   given semester of school), `end` can be left as `none` while passing
 //   `start` as `content` or `str` (for example, `"Spring 2042"`).
@@ -57,15 +57,18 @@
 // Turn a project into content.
 //
 // The project will be formatted as follows:
-//   [`title`]{ --- }[`location`] ... [`start`]{--}[`end`]
-//   [body]
+//
+//   `title`{ --- }`location` ... `start`{--}`end`
+//
+//   `body`
+//
 // Where anything in "{}" will be inserted depending on whether both of the
 // fields adjacent to it exist. The exception is that the en-dash between the
 // start and end dates will be inserted even if only one of the fields exists.
 // Everything left of the "..." will be left-aligned, and everything right of it
 // will be right-aligned.
 //
-// # Parameters
+// = Parameters
 // - `project`: `dictionary`
 //     The project to show; it should be a dictionary formatted like the one
 //     returned from `project`.
@@ -104,7 +107,7 @@
 // A convenience function to gather a list of projects together that can be
 // displayed as a section in the resume.
 //
-// # Parameters
+// = Parameters
 // - `title`: `str` | `content` | `none`
 //     The title to display for the project section.
 // - `projects`: `arguments`
