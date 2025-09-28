@@ -88,7 +88,7 @@
 
 // Create a generic contact entry with an embedded link.
 //
-// `name` and `value` are directly passed to `Content` and should follow those
+// `name` and `value` are directly passed to `Contact` and should follow those
 // conventions, and `dest` must be able to be passed to `link` (e.g. a string
 // URL).
 #let Link(name, value, dest) = {
