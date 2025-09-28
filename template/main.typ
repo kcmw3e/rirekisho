@@ -63,19 +63,24 @@
 )
 
 #let projects = Project-section(
-  Project(title: "Automatic Spellmaker", timeframe: "The Year of Spirits")[
-    In this project, I created an automatic spell making apparatus, inspired by
-      the spirits that arose in The Year of Spirits.
-    - The apparatus could make 50 spells every day.
-    - It consumed 5 Tubes of mana for every spell created.
+  Project(title: "Automatic Pancake Flipper", timeframe: 2044)[
+    - Created a machine that automatically flips pancakes
+    - Used open-source computer vision libraries to control when the pancakes
+        flip.
+    - Added input for how brown the panacakes should be.
+    - Designed and fabricated everything for the pancake flipper.
+    - Collected visual data from more than 123 pancake-making sessions to feed
+      the visual model.
   ],
   Project(
-    title: "Self-writing Paper",
-    timeframe: datetime(year: 0038, month: 5, day: 1),
+    title: "Automatic Pancake Maker",
+    timeframe: 2043,
   )[
-    - Through experimental efforts, created paper that writes on itself.
-    - The paper can write as fast as any being, and without tiring.
-    - The paper only requires 1 Tube of mana a day.
+    - Created a machine that automatically makes pancake batter.
+    - Used math#sym.trademark to control the robotic arm that picks ingredients.
+    - Added a user interface that allows specifying levels of fluffiness,
+        alternate ingredients such as blueberries and bananas, and an
+        "experiment" mode where it just randomly makes something.
   ],
 )
 
