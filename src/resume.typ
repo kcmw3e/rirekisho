@@ -51,7 +51,7 @@
 // The set/show rules to apply to the resume when showing it. This may be
 // changed at will, but should happen *prior* to showing the resume with
 // `resume` in order for them to take effect.
-#let resume-rules = state("resume-rules", default-rules)
+#let resume-rules = state("resumania:resume:resume-rules", default-rules)
 
 // This is a convenience function for updating the `resume-rules` state with a
 // new rules function.

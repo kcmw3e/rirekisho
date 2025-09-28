@@ -6,7 +6,7 @@
 
 // This is the state which determines whether or not debugging utilities are
 // enabled.
-#let is-debug-enabled = state("is-debug-enabled",
+#let is-debug-enabled = state("resumania:debug:is-debug-enabled",
   sys.inputs.at("debug", default: "false") == "true",
 )
 

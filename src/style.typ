@@ -96,7 +96,7 @@
 // contains all style parameters. It is encouraged to use
 // `new-style-from-default` for this purpose to fill any missing parameters
 // automatically.
-#let current-style = state("style-state", default-style)
+#let current-style = state("resumania:style:current-style", default-style)
 
 // Reset the current style to the default style.
 #let reset-style-to-default() = {

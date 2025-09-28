@@ -18,7 +18,7 @@
 // functions should allow a dedicated argument for changing the way `datetime`s
 // are displayed for that one instance.
 #let default-datetime-format = state(
-  "default-datetime-format",
+  "resumania:timeframe:default-datetime-format",
   "[month repr:short] [year]",
 )
 
