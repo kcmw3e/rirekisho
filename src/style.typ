@@ -103,8 +103,10 @@
   current-style.update(default-style)
 }
 
+
 // The below functions are convenience for accessing the elements in the style
 // since it can be cumbersome to do so manually.
+// -----------------------------------------------------------------------------
 
 #let name(value) = {
   return context (current-style.get().name)(value)
