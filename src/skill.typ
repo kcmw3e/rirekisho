@@ -16,6 +16,12 @@
 #import "section.typ": section
 #import "style.typ"
 
+// The separator between skills in a skillset. This may be customized by
+// changing its value to something else. For example `[ | ]` would result in
+// skills being separated with the pipe ("|") character.
+#let skill-separator = state("resumania:skill:skill-separator", [, ])
+
+
 // Create a set of skills belonging to some category.
 //
 // = Parameters
@@ -46,7 +52,7 @@
 
   let header = style.element(skillset.category +  sym.colon + sym.space)
 
-  let skills = skillset.skills.join(", ")
+  let skills = context skillset.skills.join(skill-separator.get())
 
   result += box(style.header(header))
   result += box(style.body(skills))
