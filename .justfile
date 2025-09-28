@@ -22,7 +22,7 @@ version := `cat version`
 # PDF viewer variable to change what program is used for opening PDFs.
 
 build_dir := env('RESUMANIA_BUILD_DIR', 'build')
-package_dir := build_dir/'local'/package_name/version
+package_dir := build_dir/'preview'/package_name/version
 test_dir := build_dir/env('RESUMANIA_TEST_DIR', 'test')
 pdf_viewer := env('PDF_VIEWER', 'okular')
 

@@ -1,4 +1,4 @@
-#import "@local/resumania:1.0.0": *
+#import "@preview/resumania:1.0.0": *
 
 #let author = "John Doe"
 
