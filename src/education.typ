@@ -132,7 +132,7 @@
 //     `Education` such that it can be used in `show-education`. Arguments may
 //     be named or not; in either case they are appended in the order in which
 //     they were passed, with the named educations first.
-#let Education-section(title: "Education", ..educations) = {
+#let Education-section(title: [Education], ..educations) = {
   return Section(
     title,
     show-education,

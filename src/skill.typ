@@ -65,6 +65,6 @@
 //     `Skillset` such that it can be used in `show-skillset`. Arguments may be
 //     named or not; in either case they are appended in the order in which they
 //     were passed, with the named skillsets first.
-#let Skills-section(title: "Skills", ..skillsets) = {
+#let Skills-section(title: [Skills], ..skillsets) = {
   return Section(title, show-skillset, ..skillsets)
 }

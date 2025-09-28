@@ -119,7 +119,7 @@
 //     such that it can be used in `show-work`. Arguments may be named or not;
 //     in either case they are appended in the order in which they were passed,
 //     with the named experiences first.
-#let Work-section(title: "Work Experience", ..works) = {
+#let Work-section(title: [Work Experience], ..works) = {
   return Section(
     title,
     show-work,
