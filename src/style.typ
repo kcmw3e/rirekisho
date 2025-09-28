@@ -27,8 +27,6 @@
 //   },
 // ))
 //
-// // TODO: this may need to be changed, since `style` is both the name of the
-// // module and the global state variable
 // #current-style.update(wacky-style)
 // ```
 // -----------------------------------------------------------------------------
