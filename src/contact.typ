@@ -3,21 +3,21 @@
 //
 // Here is a usage example:
 // ```typst
-// #let phone = (Phone("8675309"))
-// #let portfolio = Link(
+// #let phone-number = (phone("8675309"))
+// #let portfolio = url-link(
 //   "Portfolio",
 //   "example.com/johndoe",
 //   "https://example.com",
 // )
 //
 // // Make a custom contact entry.
-// #let greeting = Contact(
+// #let greeting = contact(
 //   "Howdy",
 //   "John",
 //   show-value: (who) => { return emph(who) },
 // )
 //
-// #show-contact-section(Contact-section(phone, portfolio, greeting))
+// #show-contact-section(contact-section(phone-number, portfolio, greeting))
 // ```
 // -----------------------------------------------------------------------------
 
@@ -39,7 +39,7 @@
 // - `show-value`: `function`
 //     A function which takes the `value` and returns `content` to be displayed
 //     next to `name`.
-#let Contact(name, value, show-value: text) = {
+#let contact(name, value, show-value: text) = {
   return (name: name, value: value, show-value: show-value)
 }
 
@@ -61,9 +61,9 @@
 // There is no enforcement on the format or type for the number so long as it
 // can be appended to a string (for the link). When shown using `show-contact`,
 // a `"tel:"` link will be added to the resulting content.
-#let Phone(number) = {
-  return Contact(
-    "Phone",
+#let phone(number) = {
+  return contact(
+    [Phone],
     number,
     show-value: (number) => {
       link("tel:" + number)
@@ -76,9 +76,9 @@
 // There is no enforcement on the format or type for the email so long as it can
 // be appended to a string (for the link). When using `show-contact`, a
 // `"mailto:"` link will be added to the resulting content.
-#let Email(email) = {
-  return Contact(
-    "Email",
+#let email(email) = {
+  return contact(
+    [Email],
     email,
     show-value: (email) => {
       link("mailto:" + email)
@@ -88,11 +88,11 @@
 
 // Create a generic contact entry with an embedded link.
 //
-// `name` and `value` are directly passed to `Content` and should follow those
+// `name` and `value` are directly passed to `contact` and should follow those
 // conventions, and `dest` must be able to be passed to `link` (e.g. a string
 // URL).
-#let Link(name, value, dest) = {
-  return Contact(
+#let url-link(name, value, dest) = {
+  return contact(
     name,
     value,
     show-value: (value) => {
@@ -101,9 +101,9 @@
   )
 }
 
-// Create a section of multiple contact entries (created from `Contact` or the
-// other common "sub-types" (e.g. `Phone`, `Email`, etc.).
-#let Contact-section(..contacts) = {
+// Create a section of multiple contact entries (created from `contact` or the
+// other common "sub-types" (e.g. `phone`, `email`, etc.).
+#let contact-section(..contacts) = {
   return (named-contacts: contacts.named(), unnamed-contacts: contacts.pos())
 }
 

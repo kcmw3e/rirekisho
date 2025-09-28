@@ -2,15 +2,15 @@
 
 #let author = "Your Name"
 
-#let contacts = Contact-section(
-  phone: Phone("+0 (123) 555-0123"),
-  email: Email("your.name@example.com"),
-  linkedin: Link("LinkedIn", "example", "https://linkedin.com"),
-  github: Link("GitHub", "example", "https://github.com")
+#let contacts = contact-section(
+  phone: phone("+0 (123) 555-0123"),
+  email: email("your.name@example.com"),
+  linkedin: url-link("LinkedIn", "example", "https://linkedin.com"),
+  github: url-link("GitHub", "example", "https://github.com")
 )
 
-#let education = Education-section(
-  masters: Education(
+#let education = education-section(
+  masters: education(
     institution: "Some School",
     location: "Anywhere",
     kind: "M.S.",
@@ -19,7 +19,7 @@
     score: 3.44,
     scale: 4.0,
   ),
-  undergrad: Education(
+  undergrad: education(
     institution: "Another School",
     location: "The other place",
     kind: "B.S.",
@@ -30,8 +30,8 @@
   ),
 )
 
-#let work = Work-section(
-  Work(
+#let work = work-section(
+  work(
     company: "Some Company",
     location: "Anywhere",
     position: "Mechanical Designer",
@@ -46,7 +46,7 @@
     - Worked with customers to generate specifications and requirements for the
         aircraft and its features.
   ],
-  Work(
+  work(
     company: "A Different Company",
     location: "Somewhere Else",
     position: "Mechanical Engineer Intern",
@@ -62,8 +62,8 @@
   ],
 )
 
-#let projects = Project-section(
-  Project(title: "Automatic Pancake Flipper", timeframe: 2044)[
+#let projects = project-section(
+  project(title: "Automatic Pancake Flipper", timeframe: 2044)[
     - Created a machine that automatically flips pancakes
     - Used open-source computer vision libraries to control when the pancakes
         flip.
@@ -72,7 +72,7 @@
     - Collected visual data from more than 123 pancake-making sessions to feed
       the visual model.
   ],
-  Project(
+  project(
     title: "Automatic Pancake Maker",
     timeframe: 2043,
   )[
@@ -84,14 +84,14 @@
   ],
 )
 
-#let skills = Skills-section(
-  Skillset(
+#let skills = skills-section(
+  skillset(
     "Simulation",
     "Simulation Software 1",
     "Simulation Design",
     "FEA Software",
   ),
-  Skillset("Software", "Office Suite", "CAD Software"),
+  skillset("Software", "Office Suite", "CAD Software"),
 )
 
 #show: resume.with(author, contacts, education, work, projects, skills)

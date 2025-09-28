@@ -14,13 +14,13 @@ If you don't want to start from a template, the basic structure for creating a
 
 // Define parts of the resume using Resumania's "types" (see below)
 #let author = "Your Name"
-#let contacts = Contact-section(...)
-#let education = Education-section(...)
-#let work = Work-section(...)
-#let projects = Project-section(...)
-#let skills = Skills-section(...)
+#let contacts = contact-section(...)
+#let educations = education-section(...)
+#let works = work-section(...)
+#let projects = project-section(...)
+#let skills = skills-section(...)
 
-#show: resume.with(author, contacts, education, work, projects, skills)
+#show: resume.with(author, contacts, educations, works, projects, skills)
 ```
 
 where you fill out the arguments to `*-section` functions with the content of

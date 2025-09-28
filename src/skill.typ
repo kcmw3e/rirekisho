@@ -3,9 +3,9 @@
 //
 // Here is a usage example:
 // ```typst
-// #let skills = Skills-section(
-//   Skillset("No Skills", "Can't Teleport", "Unable to Fly"),
-//   Skillset("All Skills", "Super-strength", "Invulnerable", "Omni-immune"),
+// #let skills = skills-section(
+//   skillset("No Skills", "Can't Teleport", "Unable to Fly"),
+//   skillset("All Skills", "Super-strength", "Invulnerable", "Omni-immune"),
 // )
 //
 // #show-section(skills)
@@ -13,7 +13,7 @@
 // -----------------------------------------------------------------------------
 
 #import "debug.typ": *
-#import "section.typ": Section
+#import "section.typ": section
 #import "style.typ"
 
 // Create a set of skills belonging to some category.
@@ -27,7 +27,7 @@
 //     is, any named argument will be prepended to the list of skills and any
 //     unnamed argument will be appended. The named argument *names* will be
 //     simply ignored.
-#let Skillset(category, ..skills) = {
+#let skillset(category, ..skills) = {
   return (category: category, skills: skills.named().values() + skills.pos())
 }
 
@@ -40,7 +40,7 @@
 // # Parameters
 // - `skillset`: `dictionary`
 //     The skillset to show; it should be a dictionary formatted like the one
-//     returned from `Skillset`.
+//     returned from `skillset`.
 #let show-skillset(skillset) = {
   let result = none
 
@@ -62,9 +62,9 @@
 //     The title to display for the skills section.
 // - `skillsets`: `arguments`
 //     Skillsets should be dictionaries formatted like the ones returned from
-//     `Skillset` such that it can be used in `show-skillset`. Arguments may be
+//     `skillset` such that it can be used in `show-skillset`. Arguments may be
 //     named or not; in either case they are appended in the order in which they
 //     were passed, with the named skillsets first.
-#let Skills-section(title: "Skills", ..skillsets) = {
-  return Section(title, show-skillset, ..skillsets)
+#let skills-section(title: [Skills], ..skillsets) = {
+  return section(title, show-skillset, ..skillsets)
 }
