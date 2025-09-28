@@ -24,7 +24,7 @@
     location: "The other place",
     kind: "B.S.",
     study: "Physics",
-    timeframe: 2044,
+    timeframe: datetime(year: 2041, month: 4, day: 1),
     score: 3.11,
     scale: 4.0,
   ),
