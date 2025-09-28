@@ -4,7 +4,7 @@
 // check things than an actual "pass or fail" kind of test.
 // -----------------------------------------------------------------------------
 
-#import "../src/lib.typ": *
+#import "/src/lib.typ": *
 
 #let author = "Man of Many Names"
 
