@@ -6,19 +6,56 @@ It's aimed at making it easy to compose multiple resumes without having to
 
 ## Quick Start
 
-If you don't want to start from a template, the basic structure for creating a
-  resume is:
+If you just a quick copy-paste-modify start:
 
 ```typst
 #import "@preview/resumania:1.0.0": *
 
 // Define parts of the resume using Resumania's "types" (see below)
 #let author = "Your Name"
-#let contacts = contact-section(...)
-#let educations = education-section(...)
-#let works = work-section(...)
-#let projects = project-section(...)
-#let skills = skills-section(...)
+
+#let contacts = contact-section(
+  phone("+0 (123) 555-0100"),
+  email("you@example.com"),
+  linkedin: url-link("LinkedIn", "example", "https://linkedin.com"),
+  github: url-link("GitHub", "example", "https://github.com"),
+  portfolio: url-link("Portfolio", "you.com", "https://example.com/you"),
+)
+
+#let educations = education-section(
+  education(
+    institution: "Name of School",
+    location: "Location of school",
+    kind: "Degree",
+    study: "Area of study",
+    timeframe: datetime.today(),
+    score: "x",
+    scale: "y",
+  ),
+)
+
+#let works = work-section(
+  work(
+    company: "Company name",
+    location: "Location of work",
+    position: "Posotion at company",
+    timeframe: (
+      start: datetime.today(),
+      end: "Present",
+    )
+  )[Description of work done.],
+)
+
+#let projects = project-section(
+  project(title: "Project title", timeframe: "Project date")[
+    Project ddescription.
+  ],
+)
+
+#let skills = skills-section(
+  skillset("Skill 1", "Skill 2"),
+  skillset("Skill 3", "Skill 4"),
+)
 
 #show: resume.with(
   author,
@@ -26,9 +63,6 @@ If you don't want to start from a template, the basic structure for creating a
   sections: (educations, works, projects, skills),
 )
 ```
-
-where you fill out the arguments to `*-section` functions with the content of
-  your resume using the corresponding "types".
 
 ## Concepts
 
