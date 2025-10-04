@@ -6,7 +6,7 @@
   phone: phone("+0 (123) 555-0123"),
   email: email("your.name@example.com"),
   linkedin: url-link("LinkedIn", "example", "https://linkedin.com"),
-  github: url-link("GitHub", "example", "https://github.com")
+  github: url-link("GitHub", "example", "https://github.com"),
 )
 
 #let education = education-section(
