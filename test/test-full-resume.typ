@@ -107,4 +107,8 @@
   skillset("Wands", "Making Wands", "Analyzing Wands", "Sorting Wands"),
 )
 
-#show: resume.with(author, contacts, education, works, projects, skills)
+#show: resume.with(
+  author,
+  contacts,
+  sections: (education, works, projects, skills),
+)

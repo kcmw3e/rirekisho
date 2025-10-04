@@ -64,33 +64,25 @@
 
 // Create a resume from the provided building blocks.
 //
-// The arguments `contacts`, `education`, `work`, and `projects` should come
-// from the corresponding section-creating functions (e.g. `Work-section`), and
-// `author` should be the name of the person whose resume is being built.
+// The `sections` argument should be a list of sections that can be given to
+// `show-section` for displaying in the resume. The argument `author` should be
+// the name of the person whose resume is being built.
 //
 // If horizontal lines are desired between sections, the `lines` argument may be
 // set to `true`.
 #let resume(
   author,
   contacts,
-  education,
-  work,
-  projects,
-  skills,
-  body,
+  sections: (),
   lines: false,
+  body,
 ) = {
   let separator = if lines {line(length: 100%, stroke: 1pt)} else {none}
 
   let everything = (
     name(author)
   + show-contact-section(contacts)
-  + (
-      show-section(education),
-      show-section(work),
-      show-section(projects),
-      show-section(skills),
-    ).intersperse(separator).sum()
+  + sections.map(show-section).intersperse(separator).sum()
   + body
   )
 

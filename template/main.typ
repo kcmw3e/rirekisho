@@ -94,4 +94,8 @@
   skillset("Software", "Office Suite", "CAD Software"),
 )
 
-#show: resume.with(author, contacts, education, work, projects, skills)
+#show: resume.with(
+  author,
+  contacts,
+  sections: (education, work, projects, skills),
+)

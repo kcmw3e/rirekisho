@@ -20,7 +20,11 @@ If you don't want to start from a template, the basic structure for creating a
 #let projects = project-section(...)
 #let skills = skills-section(...)
 
-#show: resume.with(author, contacts, educations, works, projects, skills)
+#show: resume.with(
+  author,
+  contacts,
+  sections: (educations, works, projects, skills),
+)
 ```
 
 where you fill out the arguments to `*-section` functions with the content of
