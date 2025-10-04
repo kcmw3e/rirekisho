@@ -4,5 +4,9 @@
 #import "resume.typ": *
 #import "section.typ": *
 #import "skill.typ": *
-#import "style.typ": *
 #import "work.typ": *
+
+// Styling is imported at the module level to avoid importing common identifiers
+// that are also used as funciton names for styles (e.g. `name`, `header`,
+// `location`, etc.).
+#import "style.typ"
