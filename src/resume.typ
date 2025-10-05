@@ -82,7 +82,7 @@
   let everything = (
     name(author)
   + show-contact-section(contacts)
-  + sections.map(show-section).intersperse(separator).sum()
+  + sections.map(show-section).intersperse(separator).sum(default: [])
   + body
   )
 
