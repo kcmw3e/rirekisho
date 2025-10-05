@@ -56,6 +56,17 @@
   return [#name: #value]
 }
 
+// Create a location contact entry.
+//
+// Most commonly this would be city and state (or equivalent), but may be any
+// `content`.
+#let location(loc) = {
+  return contact(
+    [Location],
+    loc,
+  )
+}
+
 // Create a phone number contact entry.
 //
 // There is no enforcement on the format or type for the number so long as it

@@ -20,6 +20,7 @@ If you just a quick copy-paste-modify start:
   linkedin: url-link("LinkedIn", "example", "https://linkedin.com"),
   github: url-link("GitHub", "example", "https://github.com"),
   portfolio: url-link("Portfolio", "you.com", "https://example.com/you"),
+  location: location[Your location],
 )
 
 #let educations = education-section(

@@ -13,6 +13,7 @@
   email: email("many.names@example.com"),
   linkedin: url-link("LinkedIn", "example", "https://linkedin.com"),
   github: url-link("GitHub", "example", "https://github.com"),
+  location: location[Limbo]
 )
 
 #let education = education-section(
