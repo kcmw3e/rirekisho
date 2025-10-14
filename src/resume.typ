@@ -43,6 +43,10 @@
   set page(margin: (left: 10mm, right: 10mm, top: 10mm, bottom: 10mm))
   set text(font: "Open Sans", lang: "en", size: 10pt)
 
+  // Supposedly ligatures can cause issues with resume parsers:
+  //   https://github.com/stuxf/basic-typst-resume-template/blob/8dbfb4bfa2135a3cafde41a6d370a48b04575d73/src/resume.typ#L34
+  set text(ligatures: false)
+
   set block(spacing: 10pt)
 
   body
