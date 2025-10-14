@@ -80,6 +80,12 @@ install: make-install-dir build
 
     cp -rt '{{install-dir}}' '{{package-dir}}'
 
+build-template: build
+    #!/usr/bin/env fish
+
+    typst c 'template/main.typ' '{{build-dir}}/template.pdf'                   \
+        --package-path '{{build-dir}}'
+
 check-package: build
     #!/usr/bin/env fish
 
