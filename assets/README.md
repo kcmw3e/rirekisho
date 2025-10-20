@@ -4,6 +4,12 @@ Resumania is a resume-building tool.
 It's aimed at making it easy to compose multiple resumes without having to
   rewrite a lot of duplicate information.
 
+## Template
+
+This is what the template looks like without modificaiton:
+
+![Template Resume](thumbnail.png "Template Resume")
+
 ## Quick Start
 
 If you just a quick copy-paste-modify start:
