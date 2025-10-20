@@ -101,10 +101,10 @@ For each of the sections, there is a corresponding element (or multiple in the
   case of contacts).
 Each element has a function to create it except for skills, which can be
   anything that can be trivially turned into `content`.
-The functions are `Work`, `Education`, `Project`, and `Contact`.
+The functions are `work`, `education`, `project`, and `contact`.
 
-Contacts are a special case for elements that have "sub-types", namely `Phone`,
-  `Email`, and `Link`, which are conveniences since `Contact` requires a
+Contacts are a special case for elements that have "sub-types", namely `phone`,
+  `email`, and `link`, which are conveniences since `contact` requires a
   function that converts it into `content`.
 
 This general structure should allow plenty of flexibility for defining custom
