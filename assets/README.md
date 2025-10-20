@@ -6,13 +6,13 @@ It's aimed at making it easy to compose multiple resumes without having to
 
 ## Template
 
-This is what the template looks like without modificaiton:
+This is what the template looks like without modification:
 
 ![Template Resume](thumbnail.png "Template Resume")
 
 ## Quick Start
 
-If you just a quick copy-paste-modify start:
+If you just want a quick copy-paste-modify start:
 
 ```typst
 #import "@preview/resumania:1.0.0": *
@@ -45,7 +45,7 @@ If you just a quick copy-paste-modify start:
   work(
     company: "Company name",
     location: "Location of work",
-    position: "Posotion at company",
+    position: "Position at company",
     timeframe: (
       start: datetime.today(),
       end: "Present",
