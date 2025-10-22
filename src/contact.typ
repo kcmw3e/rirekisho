@@ -87,9 +87,12 @@
 // There is no enforcement on the format or type for the number so long as it
 // can be appended to a string (for the link). When shown using `show-contact`,
 // a `"tel:"` link will be added to the resulting content.
-#let phone(number) = {
+//
+// The argument `name` optionally specifies a name for the phone number, for
+// example `[Personal]`, `[Work]`, or `[Cell].
+#let phone(number, name: none) = {
   return contact(
-    [Phone],
+    name,
     number,
     show-value: (number) => {
       link("tel:" + number)
