@@ -89,7 +89,7 @@ Resumania categorizes its types into two kinds: (1) sections and (2) section
 
 There are 5 Resumania sections: work, education, projects, skills, and contact
   information.
-Every one of these, can be turned into content using `show-section`.
+Every one of these can be turned into content using `show-section`.
 
 For each of the sections, there is a corresponding element (or multiple in the
   case of contacts).
