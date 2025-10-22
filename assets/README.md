@@ -66,8 +66,7 @@ If you just want a quick copy-paste-modify start:
 
 #show: resume.with(
   author,
-  contacts,
-  sections: (educations, works, projects, skills),
+  sections: (contacts, educations, works, projects, skills),
 )
 ```
 
@@ -90,12 +89,7 @@ Resumania categorizes its types into two kinds: (1) sections and (2) section
 
 There are 5 Resumania sections: work, education, projects, skills, and contact
   information.
-Every one of these, with the exception of contact sections, can be turned into
-  content using `show-section`.
-Contact sections are handled slightly differently due to the nature of their
-  layout—that is, contact sections are laid out horizontally, potentially in a
-  grid with multiple rows (so the number of columns per row needs to be known at
-  show-time, which doesn't fit the current `Section`/`show-section` interface).
+Every one of these, can be turned into content using `show-section`.
 
 For each of the sections, there is a corresponding element (or multiple in the
   case of contacts).

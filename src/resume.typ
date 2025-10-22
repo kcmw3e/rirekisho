@@ -76,7 +76,6 @@
 // set to `true`.
 #let resume(
   author,
-  contacts,
   sections: (),
   lines: false,
   body,
@@ -85,7 +84,6 @@
 
   let everything = (
     name(author)
-  + show-contact-section(contacts)
   + sections.map(show-section).intersperse(separator).sum(default: [])
   + body
   )

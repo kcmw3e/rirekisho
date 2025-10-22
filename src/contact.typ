@@ -22,7 +22,15 @@
 // -----------------------------------------------------------------------------
 
 #import "debug.typ": *
+#import "section.typ": *
+#import "util.typ": *
+
 #import "style.typ"
+
+// The separator between contact entries in the contact section. This can be
+// freely changed by updating the state. For example, to separate by just a
+// space it can be set to `h(1em)`.
+#let contact-separator = state("resumania:contact:contact-separator", [ | ])
 
 // Create an arbitrary contact entry.
 //
@@ -112,28 +120,28 @@
   )
 }
 
-// Create a section of multiple contact entries (created from `contact` or the
-// other common "sub-types" (e.g. `phone`, `email`, etc.).
-#let contact-section(..contacts) = {
-  return (named-contacts: contacts.named(), unnamed-contacts: contacts.pos())
-}
-
 // Turn a section of contacts into content.
 //
 // The contact entries are simply formatted into a grid with as many columns as
 // specified in `columns`. If `columns` is `none`, the number of contact entries
 // provided is used instead (i.e. just a single row).
 #let show-contact-section(contacts, columns: none) = {
-  let contacts = contacts.named-contacts.values() + contacts.unnamed-contacts
+  let contacts = contacts.named-items.values() + contacts.unnamed-items
 
-  let contact-contents = contacts.map(show-contact)
+  let body = join-with-linebreaks(
+    contacts.map(show-contact),
+    separator: context contact-separator.get(),
+  )
+  align(center, debug-block(body))
+}
 
-  columns = if columns == none { contact-contents.len() } else { columns }
-
-  return align(
-    center,
-    debug-block(
-      grid(gutter: 1em, columns: columns, ..contact-contents)
-    ),
+// Create a section of multiple contact entries (created from `contact` or the
+// other common "sub-types" (e.g. `phone`, `email`, etc.).
+#let contact-section(..contacts) = {
+  return section(
+    none,
+    none,
+    show-section: show-contact-section,
+    ..contacts,
   )
 }
