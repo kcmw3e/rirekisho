@@ -127,13 +127,5 @@
   let contacts = contacts.named-contacts.values() + contacts.unnamed-contacts
 
   let contact-contents = contacts.map(show-contact)
-
-  columns = if columns == none { contact-contents.len() } else { columns }
-
-  return align(
-    center,
-    debug-block(
-      grid(gutter: 1em, columns: columns, ..contact-contents)
-    ),
-  )
+  align(center, debug-block(contact-contents.intersperse([ | ]).sum()))
 }
