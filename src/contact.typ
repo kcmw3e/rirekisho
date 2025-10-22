@@ -22,6 +22,8 @@
 // -----------------------------------------------------------------------------
 
 #import "debug.typ": *
+#import "util.typ": *
+
 #import "style.typ"
 
 // Create an arbitrary contact entry.
@@ -126,6 +128,6 @@
 #let show-contact-section(contacts, columns: none) = {
   let contacts = contacts.named-contacts.values() + contacts.unnamed-contacts
 
-  let contact-contents = contacts.map(show-contact)
-  align(center, debug-block(contact-contents.intersperse([ | ]).sum()))
+  let body = join-with-linebreaks(contacts.map(show-contact), separator: [ | ])
+  align(center, debug-block(body))
 }
