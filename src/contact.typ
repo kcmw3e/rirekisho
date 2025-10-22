@@ -27,6 +27,11 @@
 
 #import "style.typ"
 
+// The separator between contact entries in the contact section. This can be
+// freely changed by updating the state. For example, to separate by just a
+// space it can be set to `h(1em)`.
+#let contact-separator = state("resumania:contact:contact-separator", [ | ])
+
 // Create an arbitrary contact entry.
 //
 // This is meant to be a "base" for creating specific kinds of contacts, such as
@@ -123,7 +128,10 @@
 #let show-contact-section(contacts, columns: none) = {
   let contacts = contacts.named-items.values() + contacts.unnamed-items
 
-  let body = join-with-linebreaks(contacts.map(show-contact), separator: [ | ])
+  let body = join-with-linebreaks(
+    contacts.map(show-contact),
+    separator: context contact-separator.get(),
+  )
   align(center, debug-block(body))
 }
 
