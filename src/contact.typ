@@ -105,9 +105,12 @@
 // There is no enforcement on the format or type for the email so long as it can
 // be appended to a string (for the link). When using `show-contact`, a
 // `"mailto:"` link will be added to the resulting content.
-#let email(email) = {
+//
+// The `name` argument optionally specifies a name for the email, such as
+// `[Personal]`, `[Work]`, or `[Email], for example.
+#let email(email, name: none) = {
   return contact(
-    [Email],
+    name,
     email,
     show-value: (email) => {
       link("mailto:" + email)
