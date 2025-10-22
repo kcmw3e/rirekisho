@@ -72,9 +72,12 @@
 //
 // Most commonly this would be city and state (or equivalent), but may be any
 // `content`.
-#let location(loc) = {
+//
+// The argument `name` optionally specifies what the location is, for example
+// `[Location]` or `[Hometown]`.
+#let location(loc, name: none) = {
   return contact(
-    [Location],
+    name,
     loc,
   )
 }
