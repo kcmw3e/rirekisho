@@ -180,6 +180,23 @@ or to set the skills separator to a pipe character instead of a comma:
 #skill-separator.update([ | ])
 ```
 
+### Resume rules
+
+Since the `resume` function does some specific formatting that may not be
+  desirable for everyone, there is a `state` in the `resume` module called
+  `resume-rules` that can be used to set different options than the default.
+It is highly recommended to use the `default-rules` as a basis for your own
+  rules.
+
+As an example, if you wanted to change the font from Resumania's default to a
+  monospace font:
+
+```typst
+#resume-rules.update(_ => { (author, body) => {
+  default-rules(author, text(font: "Liberation Mono", body))
+}})
+```
+
 ## Local Installation
 
 Resumania can be installed locally to be used offline. First, clone Resumania's
