@@ -98,8 +98,8 @@ Each element has a function to create it except for skills, which can be
 The functions are `work`, `education`, `project`, and `contact`.
 
 Contacts are a special case for elements that have "sub-types", namely `phone`,
-  `email`, and `link`, which are conveniences since `contact` requires a
-  function that converts it into `content`.
+  `email`, `link`, and `location`, which are conveniences since `contact`
+  requires a function that converts it into `content`.
 
 This general structure should allow plenty of flexibility for defining custom
   resume sections if desired.
