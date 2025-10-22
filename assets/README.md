@@ -159,6 +159,27 @@ There is no specific styling available past this because Resumania isn't really
   meant to make super fancy-looking resumes (which are overrated/unnecessary in
   this author's opinion).
 
+### Miscellaneous Styling
+
+There are a few small styling options not included in the `style` module that
+  are specific to certain sections.
+These are `contact-separator` in the `contact` module, `skill-separator` in the
+  `skill` module, and `default-datetime-format` in the `timeframe` module.
+Each of these is its own `state` and may be freely changed as you like.
+
+For example, to change the contact separator to a space instead of the pipe
+  character:
+
+```typst
+#contact-separator.update(h(1em))
+```
+
+or to set the skills separator to a pipe character instead of a comma:
+
+```typst
+#skill-separator.update([ | ])
+```
+
 ## Local Installation
 
 Resumania can be installed locally to be used offline. First, clone Resumania's
