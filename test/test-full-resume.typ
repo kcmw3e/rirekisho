@@ -110,6 +110,5 @@
 
 #show: resume.with(
   author,
-  contacts,
-  sections: (education, works, projects, skills),
+  sections: (contacts, education, works, projects, skills),
 )

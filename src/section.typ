@@ -35,12 +35,17 @@
 //     The items that belong as part of the section. These will be passed to
 //     `show-item` when `show-section` is called on the return object of this
 //     fucniton.
-#let section(title, show-item, ..items) = {
+// - `show-section`: `function` | `none`
+//     An optional function used to show the section. Instead of the default,
+//     this funciton will be used instead and the whole section dictionary will
+//     be passed to it.
+#let section(title, show-item, show-section: none, ..items) = {
   return (
     title: title,
     show-item: show-item,
     unnamed-items: items.pos(),
     named-items: items.named(),
+    show-section: show-section,
   )
 }
 
@@ -53,7 +58,11 @@
 #let show-section(section) = {
   let result = none
 
-  let (title, show-item, unnamed-items, named-items) = section
+  let (title, show-item, unnamed-items, named-items, show-section) = section
+
+  if show-section != none {
+    return show-section(section)
+  }
 
   title = debug-block(style.section(title), sticky: true)
   result += title
