@@ -17,7 +17,7 @@
 //   show-value: (who) => { return emph(who) },
 // )
 //
-// #show-contact-section(contact-section(phone-number, portfolio, greeting))
+// #show-section(contact-section(phone-number, portfolio, greeting))
 // ```
 // -----------------------------------------------------------------------------
 
