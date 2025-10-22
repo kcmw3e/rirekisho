@@ -47,6 +47,8 @@
 // - `show-value`: `function`
 //     A function which takes the `value` and returns `content` to be displayed
 //     next to `name`.
+//
+// Note that if `name` is `none`, it will not be shown.
 #let contact(name, value, show-value: text) = {
   return (name: name, value: value, show-value: show-value)
 }
@@ -59,9 +61,11 @@
     value = show-value(value)
   }
 
-  name = style.section(name)
+  if name != none {
+    [#style.section(name): ]
+  }
 
-  return [#name: #value]
+  value
 }
 
 // Create a location contact entry.
