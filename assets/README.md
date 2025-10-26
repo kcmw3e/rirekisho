@@ -4,9 +4,15 @@ Resumania is a resume-building tool.
 It's aimed at making it easy to compose multiple resumes without having to
   rewrite a lot of duplicate information.
 
+## Template
+
+This is what the template looks like without modification:
+
+![Template Resume](thumbnail.png "Template Resume")
+
 ## Quick Start
 
-If you just a quick copy-paste-modify start:
+If you just want a quick copy-paste-modify start:
 
 ```typst
 #import "@preview/resumania:1.0.0": *
@@ -39,7 +45,7 @@ If you just a quick copy-paste-modify start:
   work(
     company: "Company name",
     location: "Location of work",
-    position: "Posotion at company",
+    position: "Position at company",
     timeframe: (
       start: datetime.today(),
       end: "Present",
@@ -83,17 +89,17 @@ Resumania categorizes its types into two kinds: (1) sections and (2) section
 
 There are 5 Resumania sections: work, education, projects, skills, and contact
   information.
-Every one of these, can be turned into content using `show-section`.
+Every one of these can be turned into content using `show-section`.
 
 For each of the sections, there is a corresponding element (or multiple in the
   case of contacts).
 Each element has a function to create it except for skills, which can be
   anything that can be trivially turned into `content`.
-The functions are `Work`, `Education`, `Project`, and `Contact`.
+The functions are `work`, `education`, `project`, and `contact`.
 
-Contacts are a special case for elements that have "sub-types", namely `Phone`,
-  `Email`, and `Link`, which are conveniences since `Contact` requires a
-  function that converts it into `content`.
+Contacts are a special case for elements that have "sub-types", namely `phone`,
+  `email`, `link`, and `location`, which are conveniences since `contact`
+  requires a function that converts it into `content`.
 
 This general structure should allow plenty of flexibility for defining custom
   resume sections if desired.
@@ -152,6 +158,44 @@ It should mostly be used just for document setup such as page margins and text
 There is no specific styling available past this because Resumania isn't really
   meant to make super fancy-looking resumes (which are overrated/unnecessary in
   this author's opinion).
+
+### Miscellaneous Styling
+
+There are a few small styling options not included in the `style` module that
+  are specific to certain sections.
+These are `contact-separator` in the `contact` module, `skill-separator` in the
+  `skill` module, and `default-datetime-format` in the `timeframe` module.
+Each of these is its own `state` and may be freely changed as you like.
+
+For example, to change the contact separator to a space instead of the pipe
+  character:
+
+```typst
+#contact-separator.update(h(1em))
+```
+
+or to set the skills separator to a pipe character instead of a comma:
+
+```typst
+#skill-separator.update([ | ])
+```
+
+### Resume rules
+
+Since the `resume` function does some specific formatting that may not be
+  desirable for everyone, there is a `state` in the `resume` module called
+  `resume-rules` that can be used to set different options than the default.
+It is highly recommended to use the `default-rules` as a basis for your own
+  rules.
+
+As an example, if you wanted to change the font from Resumania's default to a
+  monospace font:
+
+```typst
+#resume-rules.update(_ => { (author, body) => {
+  default-rules(author, text(font: "Liberation Mono", body))
+}})
+```
 
 ## Local Installation
 

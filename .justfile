@@ -50,10 +50,9 @@ build: make-package-dir
 
     # TODO: find a better way of defining the manifest
 
-    # The readme and license files have to be capitalized to satisfy Typst's
-    # package checker, so they are copied to the packaging directory under the
-    # same names just with full capitalization.
-    set -a manifest 'readme'
+    # The license file has to be capitalized to satisfy Typst's package checker,
+    # so it is copied to the packaging directory under the same name just with
+    # full capitalization.
     set -a manifest 'license'
 
     for file in $manifest
@@ -66,6 +65,7 @@ build: make-package-dir
     set -a manifest 'src/'
     set -a manifest 'template/'
     set -a manifest 'changelog'
+    set -a manifest 'assets/README.md'
 
     cp -rt '{{package-dir}}' $manifest
 

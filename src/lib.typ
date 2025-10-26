@@ -7,6 +7,6 @@
 #import "work.typ": *
 
 // Styling is imported at the module level to avoid importing common identifiers
-// that are also used as funciton names for styles (e.g. `name`, `header`,
+// that are also used as function names for styles (e.g. `name`, `header`,
 // `location`, etc.).
 #import "style.typ"

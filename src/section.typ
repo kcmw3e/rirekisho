@@ -37,7 +37,7 @@
 //     fucniton.
 // - `show-section`: `function` | `none`
 //     An optional function used to show the section. Instead of the default,
-//     this funciton will be used instead and the whole section dictionary will
+//     this function will be used instead and the whole section dictionary will
 //     be passed to it.
 #let section(title, show-item, show-section: none, ..items) = {
   return (
