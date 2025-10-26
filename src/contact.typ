@@ -3,7 +3,7 @@
 //
 // Here is a usage example:
 // ```typst
-// #let phone-number = (phone("8675309"))
+// #let phone-number = phone("+0 (123) 555-0100")
 // #let portfolio = url-link(
 //   name: "Portfolio",
 //   "example.com/johndoe",
