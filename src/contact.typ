@@ -5,7 +5,7 @@
 // ```typst
 // #let phone-number = (phone("8675309"))
 // #let portfolio = url-link(
-//   "Portfolio",
+//   name: "Portfolio",
 //   "example.com/johndoe",
 //   "https://example.com",
 // )
@@ -123,7 +123,7 @@
 // `name` and `value` are directly passed to `contact` and should follow those
 // conventions, and `dest` must be able to be passed to `link` (e.g. a string
 // URL).
-#let url-link(name, value, dest) = {
+#let url-link(value, dest, name: none) = {
   return contact(
     name,
     value,
