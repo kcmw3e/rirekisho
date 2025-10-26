@@ -11,8 +11,8 @@
 #let contacts = contact-section(
   phone: phone("+0 (123) 555-0100"),
   email: email("many.names@example.com"),
-  linkedin: url-link("LinkedIn", "example", "https://linkedin.com"),
-  github: url-link("GitHub", "example", "https://github.com"),
+  linkedin: url-link(name: "LinkedIn", "example", "https://linkedin.com"),
+  github: url-link(name: "GitHub", "example", "https://github.com"),
   location: location[Limbo]
 )
 

@@ -5,7 +5,7 @@
 // ```typst
 // #let phone-number = (phone("8675309"))
 // #let portfolio = url-link(
-//   "Portfolio",
+//   name: "Portfolio",
 //   "example.com/johndoe",
 //   "https://example.com",
 // )
@@ -47,6 +47,8 @@
 // - `show-value`: `function`
 //     A function which takes the `value` and returns `content` to be displayed
 //     next to `name`.
+//
+// Note that if `name` is `none`, it will not be shown.
 #let contact(name, value, show-value: text) = {
   return (name: name, value: value, show-value: show-value)
 }
@@ -59,18 +61,23 @@
     value = show-value(value)
   }
 
-  name = style.section(name)
+  if name != none {
+    [#style.section(name): ]
+  }
 
-  return [#name: #value]
+  value
 }
 
 // Create a location contact entry.
 //
 // Most commonly this would be city and state (or equivalent), but may be any
 // `content`.
-#let location(loc) = {
+//
+// The argument `name` optionally specifies what the location is, for example
+// `[Location]` or `[Hometown]`.
+#let location(loc, name: none) = {
   return contact(
-    [Location],
+    name,
     loc,
   )
 }
@@ -80,9 +87,12 @@
 // There is no enforcement on the format or type for the number so long as it
 // can be appended to a string (for the link). When shown using `show-contact`,
 // a `"tel:"` link will be added to the resulting content.
-#let phone(number) = {
+//
+// The argument `name` optionally specifies a name for the phone number, for
+// example `[Personal]`, `[Work]`, or `[Cell].
+#let phone(number, name: none) = {
   return contact(
-    [Phone],
+    name,
     number,
     show-value: (number) => {
       link("tel:" + number)
@@ -95,9 +105,12 @@
 // There is no enforcement on the format or type for the email so long as it can
 // be appended to a string (for the link). When using `show-contact`, a
 // `"mailto:"` link will be added to the resulting content.
-#let email(email) = {
+//
+// The `name` argument optionally specifies a name for the email, such as
+// `[Personal]`, `[Work]`, or `[Email], for example.
+#let email(email, name: none) = {
   return contact(
-    [Email],
+    name,
     email,
     show-value: (email) => {
       link("mailto:" + email)
@@ -110,7 +123,7 @@
 // `name` and `value` are directly passed to `contact` and should follow those
 // conventions, and `dest` must be able to be passed to `link` (e.g. a string
 // URL).
-#let url-link(name, value, dest) = {
+#let url-link(value, dest, name: none) = {
   return contact(
     name,
     value,
