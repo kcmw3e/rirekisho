@@ -33,7 +33,6 @@
 // ```
 // -----------------------------------------------------------------------------
 
-#import "contact.typ": show-contact-section
 #import "style.typ": name
 #import "section.typ": show-section
 

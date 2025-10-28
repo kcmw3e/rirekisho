@@ -133,28 +133,25 @@
   )
 }
 
-// Turn a section of contacts into content.
-//
-// The contact entries are simply formatted into a grid with as many columns as
-// specified in `columns`. If `columns` is `none`, the number of contact entries
-// provided is used instead (i.e. just a single row).
-#let show-contact-section(contacts, columns: none) = {
-  let contacts = contacts.named-items.values() + contacts.unnamed-items
-
-  let body = join-with-linebreaks(
-    contacts.map(show-contact),
-    separator: context contact-separator.get(),
-  )
-  align(center, debug-block(body))
-}
-
 // Create a section of multiple contact entries (created from `contact` or the
 // other common "sub-types" (e.g. `phone`, `email`, etc.).
+//
+// When inserted into the document, the contact entries are inserted in the
+// order they were given, with the separator specified in `contact-separator`
+// between them (except at line breaks, where no separator is used).
 #let contact-section(..contacts) = {
   return section(
     none,
     none,
-    show-section: show-contact-section,
+    show-section: (contacts) => {
+      let contacts = contacts.named-items.values() + contacts.unnamed-items
+
+      let body = join-with-linebreaks(
+        contacts.map(show-contact),
+        separator: context contact-separator.get(),
+      )
+      align(center, debug-block(body))
+    },
     ..contacts,
   )
 }
