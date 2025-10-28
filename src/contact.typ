@@ -14,7 +14,7 @@
 // #let greeting = contact(
 //   "Howdy",
 //   "John",
-//   show-value: (who) => { return emph(who) },
+//   show-value: who => emph(who),
 // )
 //
 // #show-section(contact-section(phone-number, portfolio, greeting))
@@ -50,7 +50,7 @@
 //
 // Note that if `name` is `none`, it will not be shown.
 #let contact(name, value, show-value: text) = {
-  return (name: name, value: value, show-value: show-value)
+  (name: name, value: value, show-value: show-value)
 }
 
 // Turn a contact entry into content.
@@ -76,10 +76,7 @@
 // The argument `name` optionally specifies what the location is, for example
 // `[Location]` or `[Hometown]`.
 #let location(loc, name: none) = {
-  return contact(
-    name,
-    loc,
-  )
+  contact(name, loc)
 }
 
 // Create a phone number contact entry.
@@ -91,12 +88,10 @@
 // The argument `name` optionally specifies a name for the phone number, for
 // example `[Personal]`, `[Work]`, or `[Cell].
 #let phone(number, name: none) = {
-  return contact(
+  contact(
     name,
     number,
-    show-value: (number) => {
-      link("tel:" + number)
-    },
+    show-value: number => link("tel:" + number),
   )
 }
 
@@ -109,12 +104,10 @@
 // The `name` argument optionally specifies a name for the email, such as
 // `[Personal]`, `[Work]`, or `[Email], for example.
 #let email(email, name: none) = {
-  return contact(
+  contact(
     name,
     email,
-    show-value: (email) => {
-      link("mailto:" + email)
-    },
+    show-value: email => link("mailto:" + email),
   )
 }
 
@@ -124,12 +117,10 @@
 // conventions, and `dest` must be able to be passed to `link` (e.g. a string
 // URL).
 #let url-link(value, dest, name: none) = {
-  return contact(
+  contact(
     name,
     value,
-    show-value: (value) => {
-      return link(dest, value)
-    },
+    show-value: value => link(dest, value),
   )
 }
 
