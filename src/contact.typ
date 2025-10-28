@@ -135,10 +135,8 @@
     none,
     none,
     show-section: (contacts) => {
-      let contacts = contacts.named-items.values() + contacts.unnamed-items
-
       let body = join-with-linebreaks(
-        contacts.map(show-contact),
+        contacts.items.map(show-contact),
         separator: context contact-separator.get(),
       )
       align(center, debug-block(body))

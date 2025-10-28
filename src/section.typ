@@ -34,7 +34,8 @@
 // - `items`: `any`
 //     The items that belong as part of the section. These will be passed to
 //     `show-item` when `show-section` is called on the return object of this
-//     fucniton.
+//     fucniton. Note that both named items and unnamed items are allowed, but
+//     they will be gathered into one list of items, with named items first.
 // - `show-section`: `function` | `none`
 //     An optional function used to show the section. Instead of the default,
 //     this function will be used instead and the whole section dictionary will
@@ -43,8 +44,7 @@
   return (
     title: title,
     show-item: show-item,
-    unnamed-items: items.pos(),
-    named-items: items.named(),
+    items: items.named().values() + items.pos(),
     show-section: show-section,
   )
 }
@@ -58,7 +58,7 @@
 #let show-section(section) = {
   let result = none
 
-  let (title, show-item, unnamed-items, named-items, show-section) = section
+  let (title, show-item, items, show-section) = section
 
   if show-section != none {
     return show-section(section)
@@ -66,8 +66,6 @@
 
   title = debug-block(style.section(title), sticky: true)
   result += title
-
-  let items = named-items.values() + unnamed-items
 
   result += items.map(item =>
       debug-block(show-item(item))
