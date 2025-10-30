@@ -23,9 +23,9 @@ If you just want a quick copy-paste-modify start:
 #let contacts = contact-section(
   phone("+0 (123) 555-0100"),
   email("you@example.com"),
-  linkedin: url-link("LinkedIn", "example", "https://linkedin.com"),
-  github: url-link("GitHub", "example", "https://github.com"),
-  portfolio: url-link("Portfolio", "you.com", "https://example.com/you"),
+  linkedin: url-link(name: "LinkedIn", "example", "https://linkedin.com"),
+  github: url-link(name: "GitHub", "example", "https://github.com"),
+  portfolio: url-link(name: "Portfolio", "you.com", "https://example.com/you"),
   location: location[Your location],
 )
 
