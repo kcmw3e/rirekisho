@@ -144,21 +144,6 @@ Each key in the style maps to a function which takes one argument of `content`
 This means that, for example, if you just want to erase the styling you can set
   the style key which you want to reset to `text`.
 
-Since Resumania resumes are composed typically by defining sections and then
-  finally ending the Typst document with a `show: resume.with(...)` call, there
-  may be some things you can't easily style (or might get overridden by
-  Resumania defaults).
-If you would like to change the main document's `show`/`set` rules you can make
-  changes to the `resume-rules` state in the `resume` module.
-This state is just a function that takes the author and resume body (which will
-  already be `content`).
-It should mostly be used just for document setup such as page margins and text
-  font/size, but of course you're free to do whatever you want.
-
-There is no specific styling available past this because Resumania isn't really
-  meant to make super fancy-looking resumes (which are overrated/unnecessary in
-  this author's opinion).
-
 ### Miscellaneous Styling
 
 There are a few small styling options not included in the `style` module that
@@ -182,12 +167,23 @@ or to set the skills separator to a pipe character instead of a comma:
 
 ### Resume rules
 
-Since the `resume` function does some specific formatting that may not be
-  desirable for everyone, there is a `state` in the `resume` module called
-  `resume-rules` that can be used to set different options than the default.
+Since Resumania resumes are composed typically by defining sections and then
+  finally ending the Typst document with a `show: resume.with(...)` call, there
+  may be some things you can't easily style (or might get overridden by
+  Resumania defaults).
+If you would like to change the main document's `show`/`set` rules you can make
+  changes to the `resume-rules` state in the `resume` module.
+This state is just a function that takes the author and resume body (which will
+  already be `content`).
+It should mostly be used just for document setup such as page margins and text
+  font/size, but of course you're free to do whatever you want.
+
+There is no specific styling available past this because Resumania isn't really
+  meant to make super fancy-looking resumes (which are overrated/unnecessary in
+  this author's opinion).
+
 It is highly recommended to use the `default-rules` as a basis for your own
   rules.
-
 As an example, if you wanted to change the font from Resumania's default to a
   monospace font:
 
