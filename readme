@@ -1,12 +1,32 @@
-Rirekisho is a resume-builder. It is not necessarily meant to be extremely
-customizable, but rather a more procedurally-created resume tool.
+Resumania is a resume-building library. It is not necessarily meant to be
+extremely customizable, but rather a tool to create more procedural resumes, and
+rigid enough that you can make multiple variant resumes from mostly the same set
+of information, just swapping out parts as needed.
 
 The motivation behind this is mostly to be able to capture *all* the information
 that a person wants in any number of resumes in a common manner and then be able
 to easily create multiple tailored resumes without having to re-write a lot of
 the same information or boilerplate.
 
-(The name "rirekisho" comes from the Japanese word for resume: 履歴書. There is
-no particular reason for choosing this name besides the fact that I wanted
-something more interesting than "resume-something" as a package name and that
-I'm currently learning Japanese.)
+Navigating this project:
+
+- The main source for the library is in 'src/', with the primary elements of the
+  resume each having their own file within 'src/'.
+- 'version' simply contains the text of the current version number of the
+  package. This is mainly for scripting purposes (e.g. when creating the built
+  package).
+- Tests are located in 'test/', with each file acting as a standalone document
+  to assist with visually debugging/testing changes to the package. They serve
+  more as examples and manual/visual checks than actual pass/fail kind of test
+  for now.
+- The 'template/' directory contains a template that Typst can use to generate a
+  new project from.
+- The 'assets/' directory contains extra files that will be included in the
+  built package, such as a 'README.md'.
+
+Related/similar projects:
+    - basic-resume: https://github.com/stuxf/basic-typst-resume-template
+    - min-resume: https://github.com/mayconfmelo/min-resume
+
+Inspiration taken from:
+    - https://github.com/jakegut/resume
